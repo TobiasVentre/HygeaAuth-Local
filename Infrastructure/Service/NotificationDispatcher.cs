@@ -158,7 +158,7 @@ namespace Infrastructure.Service
                 try
                 {
                     _logger.LogInformation("Esperando 10 segundos antes del próximo ciclo...");
-                    await Task.Delay(TimeSpan.FromSeconds(10), stoppingToken);
+                    await Task.Delay(TimeSpan.FromSeconds(10000), stoppingToken);
                 }
                 catch (TaskCanceledException)
                 {
