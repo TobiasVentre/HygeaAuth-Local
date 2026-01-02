@@ -107,27 +107,27 @@ namespace Infrastructure.Service
             claims.AddClaim(new Claim(CustomClaims.CanEditOwnProfile, "true"));
             claims.AddClaim(new Claim(CustomClaims.CanViewOwnAppointments, "true"));
 
-            // Permisos específicos para Doctores
-            if (user.Role == UserRoles.Doctor)
+            // Permisos específicos para fumigadores
+            if (user.Role == UserRoles.Fumigator)
             {
-                claims.AddClaim(new Claim(CustomClaims.CanViewDoctorInfo, "true"));
+                claims.AddClaim(new Claim(CustomClaims.CanViewFumigatorInfo, "true"));
                 claims.AddClaim(new Claim(CustomClaims.CanManageAppointments, "true"));
                 claims.AddClaim(new Claim(CustomClaims.CanManageSchedule, "true"));
-                claims.AddClaim(new Claim(CustomClaims.CanViewPatientInfo, "true"));
+                claims.AddClaim(new Claim(CustomClaims.CanViewClientInfo, "true"));
                 
-                // Claims específicos de doctores (ejemplo - puedes expandir según tu modelo)
+                // Claims específicos de fumagadores (ejemplo - puedes expandir según tu modelo)
                 // claims.AddClaim(new Claim(CustomClaims.Specialty, user.Specialty ?? ""));
                 // claims.AddClaim(new Claim(CustomClaims.LicenseNumber, user.LicenseNumber ?? ""));
             }
 
-            // Permisos específicos para Pacientes
-            if (user.Role == UserRoles.Patient)
+            // Permisos específicos para clientes
+            if (user.Role == UserRoles.Client)
             {
-                claims.AddClaim(new Claim(CustomClaims.CanViewPatientInfo, "true"));
-                claims.AddClaim(new Claim(CustomClaims.PatientId, user.UserId.ToString()));
+                claims.AddClaim(new Claim(CustomClaims.CanViewClientInfo, "true"));
+                claims.AddClaim(new Claim(CustomClaims.UserId, user.UserId.ToString()));
                 
-                // Los pacientes pueden ver información básica de doctores para reservar turnos
-                claims.AddClaim(new Claim(CustomClaims.CanViewDoctorInfo, "limited"));
+                // Los pacientes pueden ver información básica de fumigadores  para reservar turnos
+                claims.AddClaim(new Claim(CustomClaims.CanViewFumigatorInfo, "limited"));
             }
         }
         

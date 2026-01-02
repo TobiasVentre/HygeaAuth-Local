@@ -36,8 +36,8 @@ namespace Application.Validators
 
             // El rol es opcional, pero si se proporciona debe ser válido
             RuleFor(u => u.Role)
-                .Must(role => string.IsNullOrWhiteSpace(role) || role == "Patient" || role == "Doctor")
-                .WithMessage("El rol debe ser 'Patient' o 'Doctor' si se proporciona.");
+                .Must(role => string.IsNullOrWhiteSpace(role) || role == "Client" || role == "Fumigator" || role == "Admin")
+                .WithMessage("El rol debe ser 'Client', 'Fumigator' o 'Admin' si se proporciona.");
 
            
         }

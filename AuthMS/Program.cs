@@ -149,13 +149,13 @@ builder.Services.AddAuthorization(options =>
     options.AddPolicy("CanEditOwnProfile", policy =>
         policy.RequireClaim(CustomClaims.CanEditOwnProfile, "true"));
 
-    // Política para ver información de doctores
-    options.AddPolicy("CanViewDoctorInfo", policy =>
-        policy.RequireClaim(CustomClaims.CanViewDoctorInfo, "true", "limited"));
+    // Política para ver información de Fumigadores
+    options.AddPolicy("CanViewFumigatorInfo", policy =>
+        policy.RequireClaim(CustomClaims.CanViewFumigatorInfo, "true", "limited"));
 
-    // Política para ver información de pacientes
-    options.AddPolicy("CanViewPatientInfo", policy =>
-        policy.RequireClaim(CustomClaims.CanViewPatientInfo, "true"));
+    // Política para ver información de clientes
+    options.AddPolicy("CanViewClientInfo", policy =>
+        policy.RequireClaim(CustomClaims.CanViewClientInfo, "true"));
 
     // Política para gestionar citas
     options.AddPolicy("CanManageAppointments", policy =>
@@ -169,13 +169,13 @@ builder.Services.AddAuthorization(options =>
     options.AddPolicy("CanViewOwnAppointments", policy =>
         policy.RequireClaim(CustomClaims.CanViewOwnAppointments, "true"));
 
-    // Política para doctores únicamente
+    // Política para fumigadores únicamente
     options.AddPolicy("DoctorOnly", policy =>
-        policy.RequireRole(UserRoles.Doctor));
+        policy.RequireRole(UserRoles.Fumigator));
 
     // Política para pacientes únicamente
     options.AddPolicy("PatientOnly", policy =>
-        policy.RequireRole(UserRoles.Patient));
+        policy.RequireRole(UserRoles.Client));
 
     // Política para usuarios con email verificado
     options.AddPolicy("EmailVerified", policy =>

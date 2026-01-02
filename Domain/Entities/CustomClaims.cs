@@ -9,8 +9,8 @@ namespace Domain.Entities
     {
         // Claims de permisos específicos
         public const string CanEditOwnProfile = "CanEditOwnProfile";
-        public const string CanViewDoctorInfo = "CanViewDoctorInfo";
-        public const string CanViewPatientInfo = "CanViewPatientInfo";
+        public const string CanViewFumigatorInfo = "CanViewFumigatorInfo";
+        public const string CanViewClientInfo = "CanViewClientInfo";
         public const string CanManageAppointments = "CanManageAppointments";
         public const string CanViewOwnAppointments = "CanViewOwnAppointments";
         public const string CanManageSchedule = "CanManageSchedule";

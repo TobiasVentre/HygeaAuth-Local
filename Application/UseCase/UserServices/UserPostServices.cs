@@ -40,15 +40,15 @@ namespace Application.UseCase.UserServices
             await CheckEmailExist(request.Email);
             var hashedPassword = await _cryptographyService.HashPassword(request.Password);
 
-            // Validar y asignar el rol: si viene vacío o null, por defecto es Patient
+            // Validar y asignar el rol: si viene vacío o null, por defecto es Client
             var role = string.IsNullOrWhiteSpace(request.Role) 
-                ? UserRoles.Patient 
+                ? UserRoles.Client
                 : request.Role.Trim(); // Limpiar espacios en blanco
 
             // Validar que el rol sea válido (comparación case-sensitive)
-            if (role != UserRoles.Patient && role != UserRoles.Doctor)
+            if (role != UserRoles.Client && role != UserRoles.Fumigator)
             {
-                throw new InvalidValueException($"El rol '{role}' no es válido. Los roles permitidos son: '{UserRoles.Patient}' o '{UserRoles.Doctor}'");
+                throw new InvalidValueException($"El rol '{role}' no es válido. Los roles permitidos son: '{UserRoles.Client}',{UserRoles.Fumigator} o '{UserRoles.Admin} '");
             }
             
             _logger.LogInformation("Registrando usuario con rol: {Role}", role);
