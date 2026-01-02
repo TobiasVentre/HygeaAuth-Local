@@ -27,8 +27,6 @@ using Infrastructure.Repositories;
 using Infrastructure.Service.NotificationFormatter;
 using Application.UseCase;
 using Domain.Entities;
-using Application.Interfaces.Messaging;
-using Infrastructure.Messaging;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -108,8 +106,6 @@ builder.Services.AddScoped<IEmailVerificationCommand, EmailVerificationCommand>(
 builder.Services.AddScoped<IEmailVerificationQuery, EmailVerificationQuery>();
 
 
-//Messaging
-builder.Services.AddSingleton<IUserCreatedEventPublisher, RabbitMqUserCreatedEventPublisher>();
 
 //validators
 builder.Services.AddValidatorsFromAssembly(typeof(UserRequestValidator).Assembly);
