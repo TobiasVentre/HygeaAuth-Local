@@ -6,9 +6,7 @@ using Application.Interfaces.IQuery;
 using Application.Interfaces.IServices.ICryptographyService;
 using Application.Interfaces.IServices.IUserServices;
 using Application.Interfaces.IServices.IAuthServices;
-using Application.Interfaces.Messaging;
 using Domain.Entities;
-using Domain.Events;
 using Microsoft.Extensions.Logging;
 
 
@@ -20,7 +18,6 @@ namespace Application.UseCase.UserServices
         private readonly IUserCommand _userCommand;
         private readonly ICryptographyService _cryptographyService;      
         private readonly ILogger<UserPostServices> _logger;
-        private readonly IUserCreatedEventPublisher _userCreatedEventPublisher;
         private readonly IEmailVerificationService _emailVerificationService;
 
         public UserPostServices(
@@ -28,7 +25,6 @@ namespace Application.UseCase.UserServices
             IUserCommand userCommand, 
             ICryptographyService cryptographyService, 
             ILogger<UserPostServices> logger,
-            IUserCreatedEventPublisher userCreatedEventPublisher,
             IEmailVerificationService emailVerificationService
         )
         {
@@ -36,7 +32,6 @@ namespace Application.UseCase.UserServices
             _userCommand = userCommand;
             _cryptographyService = cryptographyService;
             _logger = logger;
-            _userCreatedEventPublisher = userCreatedEventPublisher;
             _emailVerificationService = emailVerificationService;
         }
 
@@ -75,27 +70,6 @@ namespace Application.UseCase.UserServices
             // Enviar código de confirmación por email
             _logger.LogInformation("Enviando código de confirmación a {Email}", user.Email);
             await _emailVerificationService.SendVerificationEmail(user.Email);
-
-            var evt = new UserCreatedEvent
-            {
-                UserId = user.UserId,
-                Role = user.Role,
-                FirstName = user.FirstName,
-                LastName = user.LastName,
-                Dni = user.Dni,
-
-                DateOfBirth = request.DateOfBirth,
-                Adress = request.Adress,
-                HealthPlan = request.HealthPlan,
-                MembershipNumber = request.MembershipNumber,
-                LicenseNumber = request.LicenseNumber,
-                Phone = request.Phone,
-                Biography = request.Biography,
-                Specialty = request.Specialty
-            };
-
-            //publicar evento en rabbitmq
-            await _userCreatedEventPublisher.PublishAsync(evt);
 
             _logger.LogInformation("Usuario guardado exitosamente en base de datos AUTH. UserId: {UserId}, Email: {Email}", user.UserId, user.Email);
             
