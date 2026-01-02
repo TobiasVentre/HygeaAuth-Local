@@ -1,0 +1,32 @@
+services:
+  authms_api:
+    build:
+      context: .
+      dockerfile: AuthMS/Dockerfile
+    container_name: authms_api
+    environment:
+      ASPNETCORE_ENVIRONMENT: "Development"
+      ConnectionStrings__DefaultConnection: 'Server=sql_server,1433;Database=AUTH;User Id=sa;Password=SecurePassword123!;Encrypt=False;TrustServerCertificate=True;'
+
+      DirectoryMS__BaseUrl: "http://host.docker.internal:8081"
+      JwtSettings__key: ${JWT_KEY:-dev-super-secret-key-change-me}
+      JwtSettings__issuer: ${JWT_ISSUER:-CuidarMed}
+      JwtSettings__audience: ${JWT_AUDIENCE:-CuidarMed}
+      JwtSettings__expiresInMinutes: ${JWT_EXPIRES_IN_MINUTES:-60}
+      EmailSettings__SmtpServer: ${EMAIL_SMTP_SERVER:-smtp.gmail.com}
+      EmailSettings__SmtpPort: ${EMAIL_SMTP_PORT:-587}
+      EmailSettings__SenderEmail: ${EMAIL_SENDER_EMAIL:-cuidarmed.notificaciones@gmail.com}
+      EmailSettings__SenderPassword: ${EMAIL_SENDER_PASSWORD:-kkuj rrpx tyxm ycad}
+      EmailSettings__EnableEmails: "true"
+
+      RabbitMQ__Host: "rabbitmq"
+      RabbitMQ__User: "user"
+      RabbitMQ__Pass: "pass"
+    ports:
+      - "8082:8080"
+    networks:
+      - cuidarmed_new_net
+
+networks:
+  cuidarmed_new_net:
+    external: true

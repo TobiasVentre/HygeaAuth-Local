@@ -1,0 +1,59 @@
+# Compilación
+bin/
+obj/
+artifacts/
+logs/
+
+# Archivos temporales de usuario / IDE
+.vs/
+.vscode/
+*.user
+*.suo
+*.userprefs
+*.rsuser
+
+# Dependencias
+node_modules/
+packages/
+*.nupkg
+*.snupkg
+
+# Cachés y resultados de test
+*.log
+TestResult*
+coverage*
+*.coverage
+*.coveragexml
+
+# Publicaciones y despliegue
+publish/
+*.pubxml
+*.publishproj
+*.azurePubxml
+
+# Archivos generados
+*.pdb
+*.tmp
+*.cache
+*.dll
+*.exe
+
+
+# SQL / Bases locales
+*.mdf
+*.ldf
+*.ndf
+
+# Historial y backups
+.vshistory/
+.localhistory/
+_Backup*/
+UpgradeLog*.XML
+UpgradeLog*.htm
+
+# Otros innecesarios
+*.bak
+*.dbmdl
+*.dbproj.schemaview
+*.log
+*.env
