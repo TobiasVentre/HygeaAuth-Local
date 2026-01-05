@@ -22,7 +22,7 @@ namespace Domain.Entities
         public const string IsEmailVerified = "IsEmailVerified";
         public const string AccountStatus = "AccountStatus";
         
-        // Claims de contexto médico
+        // Claims de contexto fumigador
         public const string Specialty = "Specialty"; // Para doctores
         public const string LicenseNumber = "LicenseNumber"; // Para doctores
         public const string PatientId = "PatientId"; // Para pacientes

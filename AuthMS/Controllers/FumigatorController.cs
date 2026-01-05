@@ -16,14 +16,14 @@ namespace AuthMS.Controllers
 {
     [Route("api/v1/[controller]")]
     [ApiController]
-    [RequireDoctor]
-    public class DoctorController : ControllerBase
+    [RequireFumigator]
+    public class FumigatorController : ControllerBase
     {
         private readonly CustomAuthService _authorizationService;
         private readonly IUserQuery _userQuery;
         private readonly IUserPutServices _userPutService;
 
-        public DoctorController(CustomAuthService authorizationService, IUserQuery userQuery, IUserPutServices userPutService)
+        public FumigatorController(CustomAuthService authorizationService, IUserQuery userQuery, IUserPutServices userPutService)
         {
             _authorizationService = authorizationService;
             _userQuery = userQuery;
@@ -31,7 +31,7 @@ namespace AuthMS.Controllers
         }
 
         /// <summary>
-        /// Obtiene el perfil del médico autenticado
+        /// Obtiene el perfil del fumigador autenticado
         /// </summary>
         /// <response code="200">Success</response>
         [HttpGet("profile")]
@@ -63,7 +63,7 @@ namespace AuthMS.Controllers
         /// <summary>
         /// Actualiza el perfil del médico autenticado
         /// </summary>
-        /// <param name="request">Datos actualizados del médico</param>
+        /// <param name="request">Datos actualizados del fumigador</param>
         /// <response code="200">Success</response>
         [HttpPut("profile")]
         [ProducesResponseType(typeof(UserResponse), 200)]
@@ -80,7 +80,7 @@ namespace AuthMS.Controllers
                 }
 
                 // Validar que el usuario esté intentando actualizar su propio perfil
-                // (ya está garantizado por RequireDoctor, pero por seguridad adicional)
+                // (ya está garantizado por RequireFumigator, pero por seguridad adicional)
                 
                 // Actualizar el usuario usando el servicio
                 var result = await _userPutService.UpdateUser(userId.Value, request);
@@ -101,7 +101,7 @@ namespace AuthMS.Controllers
         }
 
         /// <summary>
-        /// Obtiene la agenda del médico autenticado
+        /// Obtiene la agenda del fumigador autenticado
         /// </summary>
         /// <response code="200">Success</response>
         [HttpGet("schedule")]
@@ -127,10 +127,10 @@ namespace AuthMS.Controllers
         }
 
         /// <summary>
-        /// Obtiene los pacientes del médico autenticado
+        /// Obtiene los clientes del fumigador autenticado
         /// </summary>
         /// <response code="200">Success</response>
-        [HttpGet("patients")]
+        [HttpGet("clients")]
         [ProducesResponseType(typeof(GenericResponse), 200)]
         [ProducesResponseType(typeof(ApiError), 401)]
         public async Task<IActionResult> GetMyPatients()
@@ -144,7 +144,7 @@ namespace AuthMS.Controllers
                 }
 
                 // Implementar lógica para obtener pacientes del médico
-                return Ok(new GenericResponse { Message = "Lista de pacientes del médico" });
+                return Ok(new GenericResponse { Message = "Lista de clientes del fumigador" });
             }
             catch (Exception ex)
             {
@@ -153,15 +153,15 @@ namespace AuthMS.Controllers
         }
 
         /// <summary>
-        /// Obtiene el historial médico de un paciente específico
+        /// Obtiene el historial de fumigaciones de un cliente específico
         /// </summary>
-        /// <param name="patientId">ID del paciente</param>
+        /// <param name="clientId">ID del client</param>
         /// <response code="200">Success</response>
-        [HttpGet("patients/{patientId}/medical-history")]
+        [HttpGet("client/{clientId}/fumigation-history")]
         [ProducesResponseType(typeof(GenericResponse), 200)]
         [ProducesResponseType(typeof(ApiError), 401)]
         [ProducesResponseType(typeof(ApiError), 403)]
-        public async Task<IActionResult> GetPatientMedicalHistory(int patientId)
+        public async Task<IActionResult> GetPatientMedicalHistory(int clientId)
         {
             try
             {
@@ -172,13 +172,13 @@ namespace AuthMS.Controllers
                 }
 
                 // Verificar que el médico puede acceder a este paciente
-                if (!_authorizationService.CanAccessUserData(patientId))
+                if (!_authorizationService.CanAccessUserData(clientId))
                 {
                     return Forbid("No tienes permisos para acceder a este paciente");
                 }
 
                 // Implementar lógica para obtener historial médico del paciente
-                return Ok(new GenericResponse { Message = $"Historial médico del paciente {patientId}" });
+                return Ok(new GenericResponse { Message = $"Historial médico del paciente {clientId}" });
             }
             catch (Exception ex)
             {
@@ -187,7 +187,7 @@ namespace AuthMS.Controllers
         }
 
         /// <summary>
-        /// Crea una nueva cita médica
+        /// Crea una nueva cita
         /// </summary>
         /// <param name="request">Datos de la cita</param>
         /// <response code="201">Success</response>

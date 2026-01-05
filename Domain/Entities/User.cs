@@ -16,9 +16,9 @@ namespace Domain.Entities
         public string Email { get; set; }
         public string Dni { get; set; }
         public string Password { get; set; }
-        public bool IsEmailVerified { get; set; }           // Estado de verificación del email
-        public int AccessFailedCount { get; set; }           // Número de intentos fallidos
-        public DateTime? LockoutEndDate { get; set; }       // Fecha/hora de desbloqueo
+        public bool IsEmailVerified { get; set; }               // Estado de verificación del email
+        public int AccessFailedCount { get; set; }              // Número de intentos fallidos
+        public DateTime? LockoutEndDate { get; set; }           // Fecha/hora de desbloqueo
 
         public ICollection<RefreshToken> RefreshTokens { get; set; }
         public ICollection<Notification> Notifications { get; set; }

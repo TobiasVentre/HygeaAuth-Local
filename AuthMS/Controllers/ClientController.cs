@@ -17,14 +17,14 @@ namespace AuthMS.Controllers
 {
     [Route("api/v1/[controller]")]
     [ApiController]
-    [RequirePatient]
-    public class PatientController : ControllerBase
+    [RequireClient]
+    public class ClientController : ControllerBase
     {
         private readonly CustomAuthService _authorizationService;
         private readonly IUserQuery _userQuery;
         private readonly IUserPutServices _userPutService;
 
-        public PatientController(CustomAuthService authorizationService, IUserQuery userQuery, IUserPutServices userPutService)
+        public ClientController(CustomAuthService authorizationService, IUserQuery userQuery, IUserPutServices userPutService)
         {
             _authorizationService = authorizationService;
             _userQuery = userQuery;
@@ -32,7 +32,7 @@ namespace AuthMS.Controllers
         }
 
         /// <summary>
-        /// Obtiene el perfil del paciente autenticado
+        /// Obtiene el perfil del cliente autenticado
         /// </summary>
         /// <response code="200">Success</response>
         [HttpGet("profile")]
@@ -62,9 +62,9 @@ namespace AuthMS.Controllers
         }
 
         /// <summary>
-        /// Actualiza el perfil del paciente autenticado
+        /// Actualiza el perfil del cliente autenticado
         /// </summary>
-        /// <param name="request">Datos actualizados del paciente</param>
+        /// <param name="request">Datos actualizados del cliente</param>
         /// <response code="200">Success</response>
         [HttpPut("profile")]
         [ProducesResponseType(typeof(UserResponse), 200)]
@@ -81,8 +81,8 @@ namespace AuthMS.Controllers
                 }
 
                 // Validar que el usuario esté intentando actualizar su propio perfil
-                // (ya está garantizado por RequirePatient, pero por seguridad adicional)
-                
+                // (ya está garantizado por RequireClient, pero por seguridad adicional)
+
                 // Actualizar el usuario usando el servicio
                 var result = await _userPutService.UpdateUser(userId.Value, request);
                 return new JsonResult(result) { StatusCode = 200 };
@@ -102,7 +102,7 @@ namespace AuthMS.Controllers
         }
 
         /// <summary>
-        /// Obtiene las citas del paciente autenticado
+        /// Obtiene las citas del cliente autenticado
         /// </summary>
         /// <response code="200">Success</response>
         [HttpGet("appointments")]
@@ -118,8 +118,8 @@ namespace AuthMS.Controllers
                     return Unauthorized(new ApiError { Message = "Usuario no autenticado" });
                 }
 
-                // Implementar lógica para obtener citas del paciente
-                return Ok(new GenericResponse { Message = "Lista de citas del paciente" });
+                // Implementar lógica para obtener citas del cliente
+                return Ok(new GenericResponse { Message = "Lista de citas del clientes" });
             }
             catch (Exception ex)
             {
@@ -128,7 +128,7 @@ namespace AuthMS.Controllers
         }
 
         /// <summary>
-        /// Obtiene el historial médico del paciente autenticado
+        /// Obtiene el historial médico del cliente autenticado
         /// </summary>
         /// <response code="200">Success</response>
         [HttpGet("medical-history")]
@@ -145,7 +145,7 @@ namespace AuthMS.Controllers
                 }
 
                 // Implementar lógica para obtener historial médico
-                return Ok(new GenericResponse { Message = "Historial médico del paciente" });
+                return Ok(new GenericResponse { Message = "Historial médico del cliente" });
             }
             catch (Exception ex)
             {

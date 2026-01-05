@@ -76,21 +76,8 @@ builder.Services.AddScoped<INotificationRepository, NotificationRepository>();
 builder.Services.AddScoped<INotificationService, NotificationService>();
 builder.Services.AddHostedService<NotificationDispatcher>();
 // Formatters para CuidarMed+ (Telemedicina)
-builder.Services.AddSingleton<INotificationFormatter, AppointmentCreatedFormatter>();
-builder.Services.AddSingleton<INotificationFormatter, AppointmentReminderFormatter>();
-builder.Services.AddSingleton<INotificationFormatter, PrescriptionReadyFormatter>();
-builder.Services.AddSingleton<INotificationFormatter, ConsultationStartedFormatter>();
-builder.Services.AddSingleton<INotificationFormatter, MedicationReminderFormatter>();
-builder.Services.AddSingleton<INotificationFormatter, AppointmentCreatedDoctorFormatter>();
-builder.Services.AddSingleton<INotificationFormatter, AppointmentCancelledByPatientFormatter>();
-builder.Services.AddSingleton<INotificationFormatter, AppointmentCancelledByPatientDoctorFormatter>();
-builder.Services.AddSingleton<INotificationFormatter, AppointmentCancelledByDoctorFormatter>();
-builder.Services.AddSingleton<INotificationFormatter, AppointmentCancelledByDoctorDoctorFormatter>();
-builder.Services.AddSingleton<INotificationFormatter, AppointmentConfirmedFormatter>();
-builder.Services.AddSingleton<INotificationFormatter, AppointmentConfirmedDoctorFormatter>();
-builder.Services.AddSingleton<INotificationFormatter, AppointmentRescheduledFormatter>();
-builder.Services.AddSingleton<INotificationFormatter, AppointmentRescheduledDoctorFormatter>();
-builder.Services.AddSingleton<INotificationFormatter, DefaultNotificationFormatter>();
+//builder.Services.AddSingleton<INotificationFormatter, AppointmentCreatedFormatter>();
+
 
 
 
@@ -120,7 +107,7 @@ var jwtKey = builder.Configuration["JwtSettings:key"];
 
 if (string.IsNullOrEmpty(jwtKey))
 {
-    throw new Exception("No se encontr� 'JwtSettings:key'. Config�ralo en User Secrets o Variables de Entorno.");
+    throw new Exception("No se encontro 'JwtSettings:key'. Configoralo en User Secrets o Variables de Entorno.");
 }
 
 builder.Services.AddAuthentication(config =>
@@ -174,7 +161,7 @@ builder.Services.AddAuthorization(options =>
         policy.RequireRole(UserRoles.Fumigator));
 
     // Política para pacientes únicamente
-    options.AddPolicy("PatientOnly", policy =>
+    options.AddPolicy("ClientOnly", policy =>
         policy.RequireRole(UserRoles.Client));
 
     // Política para usuarios con email verificado
@@ -245,6 +232,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseCors("AllowAll");
 
 app.UseHttpsRedirection();
 

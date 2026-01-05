@@ -1,0 +1,640 @@
+Listado de rutas de carpetas
+El número de serie del volumen es 20EF-55FF
+C:.
+¦   .dockerignore
+¦   .env
+¦   .gitattributes
+¦   .gitignore
+¦   AuthMS.sln
+¦   backend-structure.txt
+¦   docker-compose.yml
+¦   
++---Application
+¦   ¦   Application.csproj
+¦   ¦   
+¦   +---Attributes
+¦   ¦       RequireRoleAttribute.cs
+¦   ¦       
+¦   +---bin
+¦   ¦   +---Debug
+¦   ¦   ¦   +---net9.0
+¦   ¦   ¦           Application.deps.json
+¦   ¦   ¦           Application.dll
+¦   ¦   ¦           Application.pdb
+¦   ¦   ¦           Domain.dll
+¦   ¦   ¦           Domain.pdb
+¦   ¦   ¦           
+¦   ¦   +---Release
+¦   ¦       +---net9.0
+¦   +---Dtos
+¦   ¦   +---Notification
+¦   ¦   ¦       AppointmentPayload.cs
+¦   ¦   ¦       ConsultationPayload.cs
+¦   ¦   ¦       MedicalReminderPayload.cs
+¦   ¦   ¦       PrescriptionPayload.cs
+¦   ¦   ¦       
+¦   ¦   +---Request
+¦   ¦   ¦       EmailResendVerificationRequest.cs
+¦   ¦   ¦       EmailVerificationRequest.cs
+¦   ¦   ¦       LoginRequest.cs
+¦   ¦   ¦       LogoutRequest.cs
+¦   ¦   ¦       NotificationEventRequest.cs
+¦   ¦   ¦       PasswordChangeRequest.cs
+¦   ¦   ¦       PasswordResetConfirmRequest.cs
+¦   ¦   ¦       PasswordResetRequest.cs
+¦   ¦   ¦       RefreshTokenRequest.cs
+¦   ¦   ¦       UserRequest.cs
+¦   ¦   ¦       UserUpdateRequest.cs
+¦   ¦   ¦       
+¦   ¦   +---Response
+¦   ¦           ApiError.cs
+¦   ¦           GenericResponse.cs
+¦   ¦           LoginResponse.cs
+¦   ¦           UserResponse.cs
+¦   ¦           
+¦   +---Exceptions
+¦   ¦       BadRequestException.cs
+¦   ¦       InactiveUserException.cs
+¦   ¦       InvalidEmailException.cs
+¦   ¦       InvalidRefreshTokenException.cs
+¦   ¦       InvalidValueException.cs
+¦   ¦       NotFoundException.cs
+¦   ¦       
+¦   +---Interfaces
+¦   ¦   +---ICommand
+¦   ¦   ¦       IEmailVerificationCommand.cs
+¦   ¦   ¦       IPasswordResetCommand.cs
+¦   ¦   ¦       IRefreshTokenCommand.cs
+¦   ¦   ¦       IUserCommand.cs
+¦   ¦   ¦       
+¦   ¦   +---IQuery
+¦   ¦   ¦       IEmailVerificationQuery.cs
+¦   ¦   ¦       IPasswordResetQuery.cs
+¦   ¦   ¦       IRefreshTokenQuery.cs
+¦   ¦   ¦       IUserQuery.cs
+¦   ¦   ¦       
+¦   ¦   +---IRepositories
+¦   ¦   ¦       INotificationRepository.cs
+¦   ¦   ¦       
+¦   ¦   +---IServices
+¦   ¦       ¦   IAuthorizationService.cs
+¦   ¦       ¦   INotificationFormatter.cs
+¦   ¦       ¦   INotificationService.cs
+¦   ¦       ¦   IResetCodeGenerator.cs
+¦   ¦       ¦   ITimeProvider.cs
+¦   ¦       ¦   
+¦   ¦       +---IAuthServices
+¦   ¦       ¦       IAuthTokenService.cs
+¦   ¦       ¦       IEmailService.cs
+¦   ¦       ¦       IEmailVerificationService.cs
+¦   ¦       ¦       ILoginService.cs
+¦   ¦       ¦       ILogoutService.cs
+¦   ¦       ¦       IPasswordResetService.cs
+¦   ¦       ¦       IRefreshTokenService.cs
+¦   ¦       ¦       
+¦   ¦       +---ICryptographyService
+¦   ¦       ¦       ICryptographyService.cs
+¦   ¦       ¦       
+¦   ¦       +---IUserServices
+¦   ¦               IUserGetServices.cs
+¦   ¦               IUserPatchServices.cs
+¦   ¦               IUserPostServices.cs
+¦   ¦               IUserPutServices.cs
+¦   ¦               
+¦   +---obj
+¦   ¦   ¦   Application.csproj.nuget.dgspec.json
+¦   ¦   ¦   Application.csproj.nuget.g.props
+¦   ¦   ¦   Application.csproj.nuget.g.targets
+¦   ¦   ¦   project.assets.json
+¦   ¦   ¦   project.nuget.cache
+¦   ¦   ¦   
+¦   ¦   +---Debug
+¦   ¦   ¦   +---net9.0
+¦   ¦   ¦       ¦   .NETCoreApp,Version=v9.0.AssemblyAttributes.cs
+¦   ¦   ¦       ¦   Applicat.44B5EDA2.Up2Date
+¦   ¦   ¦       ¦   Application.AssemblyInfo.cs
+¦   ¦   ¦       ¦   Application.AssemblyInfoInputs.cache
+¦   ¦   ¦       ¦   Application.assets.cache
+¦   ¦   ¦       ¦   Application.csproj.AssemblyReference.cache
+¦   ¦   ¦       ¦   Application.csproj.CoreCompileInputs.cache
+¦   ¦   ¦       ¦   Application.csproj.FileListAbsolute.txt
+¦   ¦   ¦       ¦   Application.dll
+¦   ¦   ¦       ¦   Application.GeneratedMSBuildEditorConfig.editorconfig
+¦   ¦   ¦       ¦   Application.GlobalUsings.g.cs
+¦   ¦   ¦       ¦   Application.pdb
+¦   ¦   ¦       ¦   Application.sourcelink.json
+¦   ¦   ¦       ¦   
+¦   ¦   ¦       +---ref
+¦   ¦   ¦       ¦       Application.dll
+¦   ¦   ¦       ¦       
+¦   ¦   ¦       +---refint
+¦   ¦   ¦               Application.dll
+¦   ¦   ¦               
+¦   ¦   +---Release
+¦   ¦       +---net9.0
+¦   ¦           ¦   .NETCoreApp,Version=v9.0.AssemblyAttributes.cs
+¦   ¦           ¦   Application.AssemblyInfo.cs
+¦   ¦           ¦   Application.AssemblyInfoInputs.cache
+¦   ¦           ¦   Application.assets.cache
+¦   ¦           ¦   Application.csproj.AssemblyReference.cache
+¦   ¦           ¦   Application.GeneratedMSBuildEditorConfig.editorconfig
+¦   ¦           ¦   Application.GlobalUsings.g.cs
+¦   ¦           ¦   
+¦   ¦           +---ref
+¦   ¦           +---refint
+¦   +---UseCase
+¦   ¦   +---AuthServices
+¦   ¦   ¦       EmailService.cs
+¦   ¦   ¦       EmailVerificationService.cs
+¦   ¦   ¦       LoginService.cs
+¦   ¦   ¦       LogoutService.cs
+¦   ¦   ¦       PasswordResetService.cs
+¦   ¦   ¦       RefreshTokenService.cs
+¦   ¦   ¦       
+¦   ¦   +---CryptographyService
+¦   ¦   ¦       CryptographyService.cs
+¦   ¦   ¦       
+¦   ¦   +---NotificationServices
+¦   ¦   ¦       CuidarMedNotificationService.cs
+¦   ¦   ¦       NotificationService.cs
+¦   ¦   ¦       
+¦   ¦   +---UserServices
+¦   ¦           UserGetServices.cs
+¦   ¦           UserPatchServices.cs
+¦   ¦           UserPostServices.cs
+¦   ¦           UserPutServices.cs
+¦   ¦           
+¦   +---Validators
+¦           EmailResendVerificationRequestValidator.cs
+¦           EmailVerificationRequestValidator.cs
+¦           LoginRequestValidator.cs
+¦           LogoutRequestValidator.cs
+¦           PasswordChangeRequestValidator.cs
+¦           PasswordResetConfirmRequestValidator.cs
+¦           PasswordResetRequestValidator.cs
+¦           RefreshTokenRequestValidator.cs
+¦           UserRequestValidator.cs
+¦           UserUpdateRequestValidator.cs
+¦           
++---AuthMS
+¦   ¦   appsettings.Development.json
+¦   ¦   appsettings.json
+¦   ¦   AuthMS.csproj
+¦   ¦   Dockerfile
+¦   ¦   Program.cs
+¦   ¦   
+¦   +---bin
+¦   ¦   +---Debug
+¦   ¦   ¦   +---net9.0
+¦   ¦   ¦       ¦   Application.dll
+¦   ¦   ¦       ¦   Application.pdb
+¦   ¦   ¦       ¦   appsettings.Development.json
+¦   ¦   ¦       ¦   appsettings.json
+¦   ¦   ¦       ¦   AuthMS.deps.json
+¦   ¦   ¦       ¦   AuthMS.dll
+¦   ¦   ¦       ¦   AuthMS.exe
+¦   ¦   ¦       ¦   AuthMS.pdb
+¦   ¦   ¦       ¦   AuthMS.runtimeconfig.json
+¦   ¦   ¦       ¦   AuthMS.staticwebassets.endpoints.json
+¦   ¦   ¦       ¦   AuthMS.xml
+¦   ¦   ¦       ¦   Azure.Core.dll
+¦   ¦   ¦       ¦   Azure.Identity.dll
+¦   ¦   ¦       ¦   Domain.dll
+¦   ¦   ¦       ¦   Domain.pdb
+¦   ¦   ¦       ¦   FluentValidation.AspNetCore.dll
+¦   ¦   ¦       ¦   FluentValidation.DependencyInjectionExtensions.dll
+¦   ¦   ¦       ¦   FluentValidation.dll
+¦   ¦   ¦       ¦   Humanizer.dll
+¦   ¦   ¦       ¦   Infrastructure.dll
+¦   ¦   ¦       ¦   Infrastructure.pdb
+¦   ¦   ¦       ¦   Konscious.Security.Cryptography.Argon2.dll
+¦   ¦   ¦       ¦   Konscious.Security.Cryptography.Blake2.dll
+¦   ¦   ¦       ¦   Microsoft.AspNetCore.Authentication.JwtBearer.dll
+¦   ¦   ¦       ¦   Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+¦   ¦   ¦       ¦   Microsoft.Bcl.AsyncInterfaces.dll
+¦   ¦   ¦       ¦   Microsoft.Build.Locator.dll
+¦   ¦   ¦       ¦   Microsoft.CodeAnalysis.CSharp.dll
+¦   ¦   ¦       ¦   Microsoft.CodeAnalysis.CSharp.Workspaces.dll
+¦   ¦   ¦       ¦   Microsoft.CodeAnalysis.dll
+¦   ¦   ¦       ¦   Microsoft.CodeAnalysis.Workspaces.dll
+¦   ¦   ¦       ¦   Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.dll
+¦   ¦   ¦       ¦   Microsoft.CodeAnalysis.Workspaces.MSBuild.dll
+¦   ¦   ¦       ¦   Microsoft.Data.SqlClient.dll
+¦   ¦   ¦       ¦   Microsoft.EntityFrameworkCore.Abstractions.dll
+¦   ¦   ¦       ¦   Microsoft.EntityFrameworkCore.Design.dll
+¦   ¦   ¦       ¦   Microsoft.EntityFrameworkCore.dll
+¦   ¦   ¦       ¦   Microsoft.EntityFrameworkCore.Relational.dll
+¦   ¦   ¦       ¦   Microsoft.EntityFrameworkCore.SqlServer.dll
+¦   ¦   ¦       ¦   Microsoft.Extensions.Caching.Abstractions.dll
+¦   ¦   ¦       ¦   Microsoft.Extensions.Caching.Memory.dll
+¦   ¦   ¦       ¦   Microsoft.Extensions.Configuration.Abstractions.dll
+¦   ¦   ¦       ¦   Microsoft.Extensions.Configuration.Binder.dll
+¦   ¦   ¦       ¦   Microsoft.Extensions.Configuration.dll
+¦   ¦   ¦       ¦   Microsoft.Extensions.DependencyInjection.Abstractions.dll
+¦   ¦   ¦       ¦   Microsoft.Extensions.DependencyInjection.dll
+¦   ¦   ¦       ¦   Microsoft.Extensions.DependencyModel.dll
+¦   ¦   ¦       ¦   Microsoft.Extensions.Diagnostics.Abstractions.dll
+¦   ¦   ¦       ¦   Microsoft.Extensions.FileProviders.Abstractions.dll
+¦   ¦   ¦       ¦   Microsoft.Extensions.Hosting.Abstractions.dll
+¦   ¦   ¦       ¦   Microsoft.Extensions.Logging.Abstractions.dll
+¦   ¦   ¦       ¦   Microsoft.Extensions.Logging.dll
+¦   ¦   ¦       ¦   Microsoft.Extensions.Options.dll
+¦   ¦   ¦       ¦   Microsoft.Extensions.Primitives.dll
+¦   ¦   ¦       ¦   Microsoft.Identity.Client.dll
+¦   ¦   ¦       ¦   Microsoft.Identity.Client.Extensions.Msal.dll
+¦   ¦   ¦       ¦   Microsoft.IdentityModel.Abstractions.dll
+¦   ¦   ¦       ¦   Microsoft.IdentityModel.JsonWebTokens.dll
+¦   ¦   ¦       ¦   Microsoft.IdentityModel.Logging.dll
+¦   ¦   ¦       ¦   Microsoft.IdentityModel.Protocols.dll
+¦   ¦   ¦       ¦   Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+¦   ¦   ¦       ¦   Microsoft.IdentityModel.Tokens.dll
+¦   ¦   ¦       ¦   Microsoft.OpenApi.dll
+¦   ¦   ¦       ¦   Microsoft.SqlServer.Server.dll
+¦   ¦   ¦       ¦   Microsoft.Win32.SystemEvents.dll
+¦   ¦   ¦       ¦   Mono.TextTemplating.dll
+¦   ¦   ¦       ¦   Swashbuckle.AspNetCore.Swagger.dll
+¦   ¦   ¦       ¦   Swashbuckle.AspNetCore.SwaggerGen.dll
+¦   ¦   ¦       ¦   Swashbuckle.AspNetCore.SwaggerUI.dll
+¦   ¦   ¦       ¦   System.ClientModel.dll
+¦   ¦   ¦       ¦   System.CodeDom.dll
+¦   ¦   ¦       ¦   System.Composition.AttributedModel.dll
+¦   ¦   ¦       ¦   System.Composition.Convention.dll
+¦   ¦   ¦       ¦   System.Composition.Hosting.dll
+¦   ¦   ¦       ¦   System.Composition.Runtime.dll
+¦   ¦   ¦       ¦   System.Composition.TypedParts.dll
+¦   ¦   ¦       ¦   System.Configuration.ConfigurationManager.dll
+¦   ¦   ¦       ¦   System.Drawing.Common.dll
+¦   ¦   ¦       ¦   System.IdentityModel.Tokens.Jwt.dll
+¦   ¦   ¦       ¦   System.Memory.Data.dll
+¦   ¦   ¦       ¦   System.Runtime.Caching.dll
+¦   ¦   ¦       ¦   System.Security.Cryptography.ProtectedData.dll
+¦   ¦   ¦       ¦   System.Security.Permissions.dll
+¦   ¦   ¦       ¦   System.Windows.Extensions.dll
+¦   ¦   ¦       ¦   
+¦   ¦   ¦       +---cs
+¦   ¦   ¦       ¦       Microsoft.CodeAnalysis.CSharp.resources.dll
+¦   ¦   ¦       ¦       Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+¦   ¦   ¦       ¦       Microsoft.CodeAnalysis.resources.dll
+¦   ¦   ¦       ¦       Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+¦   ¦   ¦       ¦       Microsoft.CodeAnalysis.Workspaces.resources.dll
+¦   ¦   ¦       ¦       
+¦   ¦   ¦       +---de
+¦   ¦   ¦       ¦       Microsoft.CodeAnalysis.CSharp.resources.dll
+¦   ¦   ¦       ¦       Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+¦   ¦   ¦       ¦       Microsoft.CodeAnalysis.resources.dll
+¦   ¦   ¦       ¦       Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+¦   ¦   ¦       ¦       Microsoft.CodeAnalysis.Workspaces.resources.dll
+¦   ¦   ¦       ¦       
+¦   ¦   ¦       +---es
+¦   ¦   ¦       ¦       Microsoft.CodeAnalysis.CSharp.resources.dll
+¦   ¦   ¦       ¦       Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+¦   ¦   ¦       ¦       Microsoft.CodeAnalysis.resources.dll
+¦   ¦   ¦       ¦       Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+¦   ¦   ¦       ¦       Microsoft.CodeAnalysis.Workspaces.resources.dll
+¦   ¦   ¦       ¦       
+¦   ¦   ¦       +---fr
+¦   ¦   ¦       ¦       Microsoft.CodeAnalysis.CSharp.resources.dll
+¦   ¦   ¦       ¦       Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+¦   ¦   ¦       ¦       Microsoft.CodeAnalysis.resources.dll
+¦   ¦   ¦       ¦       Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+¦   ¦   ¦       ¦       Microsoft.CodeAnalysis.Workspaces.resources.dll
+¦   ¦   ¦       ¦       
+¦   ¦   ¦       +---it
+¦   ¦   ¦       ¦       Microsoft.CodeAnalysis.CSharp.resources.dll
+¦   ¦   ¦       ¦       Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+¦   ¦   ¦       ¦       Microsoft.CodeAnalysis.resources.dll
+¦   ¦   ¦       ¦       Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+¦   ¦   ¦       ¦       Microsoft.CodeAnalysis.Workspaces.resources.dll
+¦   ¦   ¦       ¦       
+¦   ¦   ¦       +---ja
+¦   ¦   ¦       ¦       Microsoft.CodeAnalysis.CSharp.resources.dll
+¦   ¦   ¦       ¦       Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+¦   ¦   ¦       ¦       Microsoft.CodeAnalysis.resources.dll
+¦   ¦   ¦       ¦       Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+¦   ¦   ¦       ¦       Microsoft.CodeAnalysis.Workspaces.resources.dll
+¦   ¦   ¦       ¦       
+¦   ¦   ¦       +---ko
+¦   ¦   ¦       ¦       Microsoft.CodeAnalysis.CSharp.resources.dll
+¦   ¦   ¦       ¦       Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+¦   ¦   ¦       ¦       Microsoft.CodeAnalysis.resources.dll
+¦   ¦   ¦       ¦       Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+¦   ¦   ¦       ¦       Microsoft.CodeAnalysis.Workspaces.resources.dll
+¦   ¦   ¦       ¦       
+¦   ¦   ¦       +---pl
+¦   ¦   ¦       ¦       Microsoft.CodeAnalysis.CSharp.resources.dll
+¦   ¦   ¦       ¦       Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+¦   ¦   ¦       ¦       Microsoft.CodeAnalysis.resources.dll
+¦   ¦   ¦       ¦       Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+¦   ¦   ¦       ¦       Microsoft.CodeAnalysis.Workspaces.resources.dll
+¦   ¦   ¦       ¦       
+¦   ¦   ¦       +---pt-BR
+¦   ¦   ¦       ¦       Microsoft.CodeAnalysis.CSharp.resources.dll
+¦   ¦   ¦       ¦       Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+¦   ¦   ¦       ¦       Microsoft.CodeAnalysis.resources.dll
+¦   ¦   ¦       ¦       Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+¦   ¦   ¦       ¦       Microsoft.CodeAnalysis.Workspaces.resources.dll
+¦   ¦   ¦       ¦       
+¦   ¦   ¦       +---ru
+¦   ¦   ¦       ¦       Microsoft.CodeAnalysis.CSharp.resources.dll
+¦   ¦   ¦       ¦       Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+¦   ¦   ¦       ¦       Microsoft.CodeAnalysis.resources.dll
+¦   ¦   ¦       ¦       Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+¦   ¦   ¦       ¦       Microsoft.CodeAnalysis.Workspaces.resources.dll
+¦   ¦   ¦       ¦       
+¦   ¦   ¦       +---runtimes
+¦   ¦   ¦       ¦   +---unix
+¦   ¦   ¦       ¦   ¦   +---lib
+¦   ¦   ¦       ¦   ¦       +---net6.0
+¦   ¦   ¦       ¦   ¦               Microsoft.Data.SqlClient.dll
+¦   ¦   ¦       ¦   ¦               System.Drawing.Common.dll
+¦   ¦   ¦       ¦   ¦               
+¦   ¦   ¦       ¦   +---win
+¦   ¦   ¦       ¦   ¦   +---lib
+¦   ¦   ¦       ¦   ¦       +---net6.0
+¦   ¦   ¦       ¦   ¦               Microsoft.Data.SqlClient.dll
+¦   ¦   ¦       ¦   ¦               Microsoft.Win32.SystemEvents.dll
+¦   ¦   ¦       ¦   ¦               System.Drawing.Common.dll
+¦   ¦   ¦       ¦   ¦               System.Runtime.Caching.dll
+¦   ¦   ¦       ¦   ¦               System.Security.Cryptography.ProtectedData.dll
+¦   ¦   ¦       ¦   ¦               System.Windows.Extensions.dll
+¦   ¦   ¦       ¦   ¦               
+¦   ¦   ¦       ¦   +---win-arm
+¦   ¦   ¦       ¦   ¦   +---native
+¦   ¦   ¦       ¦   ¦           Microsoft.Data.SqlClient.SNI.dll
+¦   ¦   ¦       ¦   ¦           
+¦   ¦   ¦       ¦   +---win-arm64
+¦   ¦   ¦       ¦   ¦   +---native
+¦   ¦   ¦       ¦   ¦           Microsoft.Data.SqlClient.SNI.dll
+¦   ¦   ¦       ¦   ¦           
+¦   ¦   ¦       ¦   +---win-x64
+¦   ¦   ¦       ¦   ¦   +---native
+¦   ¦   ¦       ¦   ¦           Microsoft.Data.SqlClient.SNI.dll
+¦   ¦   ¦       ¦   ¦           
+¦   ¦   ¦       ¦   +---win-x86
+¦   ¦   ¦       ¦       +---native
+¦   ¦   ¦       ¦               Microsoft.Data.SqlClient.SNI.dll
+¦   ¦   ¦       ¦               
+¦   ¦   ¦       +---tr
+¦   ¦   ¦       ¦       Microsoft.CodeAnalysis.CSharp.resources.dll
+¦   ¦   ¦       ¦       Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+¦   ¦   ¦       ¦       Microsoft.CodeAnalysis.resources.dll
+¦   ¦   ¦       ¦       Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+¦   ¦   ¦       ¦       Microsoft.CodeAnalysis.Workspaces.resources.dll
+¦   ¦   ¦       ¦       
+¦   ¦   ¦       +---zh-Hans
+¦   ¦   ¦       ¦       Microsoft.CodeAnalysis.CSharp.resources.dll
+¦   ¦   ¦       ¦       Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+¦   ¦   ¦       ¦       Microsoft.CodeAnalysis.resources.dll
+¦   ¦   ¦       ¦       Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+¦   ¦   ¦       ¦       Microsoft.CodeAnalysis.Workspaces.resources.dll
+¦   ¦   ¦       ¦       
+¦   ¦   ¦       +---zh-Hant
+¦   ¦   ¦               Microsoft.CodeAnalysis.CSharp.resources.dll
+¦   ¦   ¦               Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+¦   ¦   ¦               Microsoft.CodeAnalysis.resources.dll
+¦   ¦   ¦               Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+¦   ¦   ¦               Microsoft.CodeAnalysis.Workspaces.resources.dll
+¦   ¦   ¦               
+¦   ¦   +---Release
+¦   ¦       +---net9.0
+¦   +---Controllers
+¦   ¦       AuthController.cs
+¦   ¦       ClientController.cs
+¦   ¦       FumigatorController.cs
+¦   ¦       NotificationController.cs
+¦   ¦       UserController.cs
+¦   ¦       
+¦   +---obj
+¦   ¦   ¦   AuthMS.csproj.nuget.dgspec.json
+¦   ¦   ¦   AuthMS.csproj.nuget.g.props
+¦   ¦   ¦   AuthMS.csproj.nuget.g.targets
+¦   ¦   ¦   project.assets.json
+¦   ¦   ¦   project.nuget.cache
+¦   ¦   ¦   
+¦   ¦   +---Debug
+¦   ¦   ¦   +---net9.0
+¦   ¦   ¦       ¦   .NETCoreApp,Version=v9.0.AssemblyAttributes.cs
+¦   ¦   ¦       ¦   apphost.exe
+¦   ¦   ¦       ¦   AuthMS.AssemblyInfo.cs
+¦   ¦   ¦       ¦   AuthMS.AssemblyInfoInputs.cache
+¦   ¦   ¦       ¦   AuthMS.assets.cache
+¦   ¦   ¦       ¦   AuthMS.csproj.AssemblyReference.cache
+¦   ¦   ¦       ¦   AuthMS.csproj.CoreCompileInputs.cache
+¦   ¦   ¦       ¦   AuthMS.csproj.FileListAbsolute.txt
+¦   ¦   ¦       ¦   AuthMS.csproj.Up2Date
+¦   ¦   ¦       ¦   AuthMS.dll
+¦   ¦   ¦       ¦   AuthMS.GeneratedMSBuildEditorConfig.editorconfig
+¦   ¦   ¦       ¦   AuthMS.genruntimeconfig.cache
+¦   ¦   ¦       ¦   AuthMS.GlobalUsings.g.cs
+¦   ¦   ¦       ¦   AuthMS.MvcApplicationPartsAssemblyInfo.cache
+¦   ¦   ¦       ¦   AuthMS.MvcApplicationPartsAssemblyInfo.cs
+¦   ¦   ¦       ¦   AuthMS.pdb
+¦   ¦   ¦       ¦   AuthMS.sourcelink.json
+¦   ¦   ¦       ¦   AuthMS.xml
+¦   ¦   ¦       ¦   rjsmcshtml.dswa.cache.json
+¦   ¦   ¦       ¦   rjsmrazor.dswa.cache.json
+¦   ¦   ¦       ¦   rpswa.dswa.cache.json
+¦   ¦   ¦       ¦   staticwebassets.build.endpoints.json
+¦   ¦   ¦       ¦   staticwebassets.build.json
+¦   ¦   ¦       ¦   staticwebassets.build.json.cache
+¦   ¦   ¦       ¦   swae.build.ex.cache
+¦   ¦   ¦       ¦   
+¦   ¦   ¦       +---ref
+¦   ¦   ¦       ¦       AuthMS.dll
+¦   ¦   ¦       ¦       
+¦   ¦   ¦       +---refint
+¦   ¦   ¦       ¦       AuthMS.dll
+¦   ¦   ¦       ¦       
+¦   ¦   ¦       +---staticwebassets
+¦   ¦   +---Release
+¦   ¦       +---net9.0
+¦   ¦           ¦   .NETCoreApp,Version=v9.0.AssemblyAttributes.cs
+¦   ¦           ¦   AuthMS.AssemblyInfo.cs
+¦   ¦           ¦   AuthMS.AssemblyInfoInputs.cache
+¦   ¦           ¦   AuthMS.assets.cache
+¦   ¦           ¦   AuthMS.csproj.AssemblyReference.cache
+¦   ¦           ¦   AuthMS.GeneratedMSBuildEditorConfig.editorconfig
+¦   ¦           ¦   AuthMS.GlobalUsings.g.cs
+¦   ¦           ¦   
+¦   ¦           +---ref
+¦   ¦           +---refint
+¦   +---Properties
+¦           launchSettings.json
+¦           
++---Domain
+¦   ¦   Domain.csproj
+¦   ¦   
+¦   +---bin
+¦   ¦   +---Debug
+¦   ¦   ¦   +---net9.0
+¦   ¦   ¦           Domain.deps.json
+¦   ¦   ¦           Domain.dll
+¦   ¦   ¦           Domain.pdb
+¦   ¦   ¦           
+¦   ¦   +---Release
+¦   ¦       +---net9.0
+¦   +---Entities
+¦   ¦       CustomClaims.cs
+¦   ¦       EmailVerificationToken.cs
+¦   ¦       Notification.cs
+¦   ¦       NotificationStatus.cs
+¦   ¦       NotificationType.cs
+¦   ¦       PasswordResetToken.cs
+¦   ¦       RefreshToken.cs
+¦   ¦       User.cs
+¦   ¦       UserRoles.cs
+¦   ¦       
+¦   +---Events
+¦   ¦       UserCreatedEvent.cs
+¦   ¦       
+¦   +---obj
+¦       ¦   Domain.csproj.nuget.dgspec.json
+¦       ¦   Domain.csproj.nuget.g.props
+¦       ¦   Domain.csproj.nuget.g.targets
+¦       ¦   project.assets.json
+¦       ¦   project.nuget.cache
+¦       ¦   
+¦       +---Debug
+¦       ¦   +---net9.0
+¦       ¦       ¦   .NETCoreApp,Version=v9.0.AssemblyAttributes.cs
+¦       ¦       ¦   Domain.AssemblyInfo.cs
+¦       ¦       ¦   Domain.AssemblyInfoInputs.cache
+¦       ¦       ¦   Domain.assets.cache
+¦       ¦       ¦   Domain.csproj.CoreCompileInputs.cache
+¦       ¦       ¦   Domain.csproj.FileListAbsolute.txt
+¦       ¦       ¦   Domain.dll
+¦       ¦       ¦   Domain.GeneratedMSBuildEditorConfig.editorconfig
+¦       ¦       ¦   Domain.GlobalUsings.g.cs
+¦       ¦       ¦   Domain.pdb
+¦       ¦       ¦   Domain.sourcelink.json
+¦       ¦       ¦   
+¦       ¦       +---ref
+¦       ¦       ¦       Domain.dll
+¦       ¦       ¦       
+¦       ¦       +---refint
+¦       ¦               Domain.dll
+¦       ¦               
+¦       +---Release
+¦           +---net9.0
+¦               ¦   .NETCoreApp,Version=v9.0.AssemblyAttributes.cs
+¦               ¦   Domain.AssemblyInfo.cs
+¦               ¦   Domain.AssemblyInfoInputs.cache
+¦               ¦   Domain.assets.cache
+¦               ¦   Domain.GeneratedMSBuildEditorConfig.editorconfig
+¦               ¦   Domain.GlobalUsings.g.cs
+¦               ¦   
+¦               +---ref
+¦               +---refint
++---Infrastructure
+    ¦   Infrastructure.csproj
+    ¦   
+    +---bin
+    ¦   +---Debug
+    ¦   ¦   +---net9.0
+    ¦   ¦           Application.dll
+    ¦   ¦           Application.pdb
+    ¦   ¦           Domain.dll
+    ¦   ¦           Domain.pdb
+    ¦   ¦           Infrastructure.deps.json
+    ¦   ¦           Infrastructure.dll
+    ¦   ¦           Infrastructure.pdb
+    ¦   ¦           Infrastructure.runtimeconfig.json
+    ¦   ¦           
+    ¦   +---Release
+    ¦       +---net9.0
+    +---Command
+    ¦       EmailVerificationCommand.cs
+    ¦       PasswordResetCommand.cs
+    ¦       RefreshTokenCommand.cs
+    ¦       UserCommand.cs
+    ¦       
+    +---Migrations
+    ¦       20251028232231_ok.cs
+    ¦       20251028232231_ok.Designer.cs
+    ¦       20251031001002_IncreaseDniMaxLength.cs
+    ¦       20251031001002_IncreaseDniMaxLength.Designer.cs
+    ¦       20251031030222_SetUserDefaults.cs
+    ¦       20251031030222_SetUserDefaults.Designer.cs
+    ¦       20251114160000_UpdateImageUrlToNvarcharMax.cs
+    ¦       20251114160000_UpdateImageUrlToNvarcharMax.Designer.cs
+    ¦       20251128191106_BORRADOIMAGEN.cs
+    ¦       20251128191106_BORRADOIMAGEN.Designer.cs
+    ¦       AppDbContextModelSnapshot.cs
+    ¦       
+    +---obj
+    ¦   ¦   Infrastructure.csproj.nuget.dgspec.json
+    ¦   ¦   Infrastructure.csproj.nuget.g.props
+    ¦   ¦   Infrastructure.csproj.nuget.g.targets
+    ¦   ¦   project.assets.json
+    ¦   ¦   project.nuget.cache
+    ¦   ¦   
+    ¦   +---Debug
+    ¦   ¦   +---net9.0
+    ¦   ¦       ¦   .NETCoreApp,Version=v9.0.AssemblyAttributes.cs
+    ¦   ¦       ¦   Infrastr.15EFFBFE.Up2Date
+    ¦   ¦       ¦   Infrastructure.AssemblyInfo.cs
+    ¦   ¦       ¦   Infrastructure.AssemblyInfoInputs.cache
+    ¦   ¦       ¦   Infrastructure.assets.cache
+    ¦   ¦       ¦   Infrastructure.csproj.AssemblyReference.cache
+    ¦   ¦       ¦   Infrastructure.csproj.CoreCompileInputs.cache
+    ¦   ¦       ¦   Infrastructure.csproj.FileListAbsolute.txt
+    ¦   ¦       ¦   Infrastructure.dll
+    ¦   ¦       ¦   Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+    ¦   ¦       ¦   Infrastructure.genruntimeconfig.cache
+    ¦   ¦       ¦   Infrastructure.GlobalUsings.g.cs
+    ¦   ¦       ¦   Infrastructure.pdb
+    ¦   ¦       ¦   Infrastructure.sourcelink.json
+    ¦   ¦       ¦   
+    ¦   ¦       +---ref
+    ¦   ¦       ¦       Infrastructure.dll
+    ¦   ¦       ¦       
+    ¦   ¦       +---refint
+    ¦   ¦               Infrastructure.dll
+    ¦   ¦               
+    ¦   +---Release
+    ¦       +---net9.0
+    ¦           ¦   .NETCoreApp,Version=v9.0.AssemblyAttributes.cs
+    ¦           ¦   Infrastructure.AssemblyInfo.cs
+    ¦           ¦   Infrastructure.AssemblyInfoInputs.cache
+    ¦           ¦   Infrastructure.assets.cache
+    ¦           ¦   Infrastructure.csproj.AssemblyReference.cache
+    ¦           ¦   Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+    ¦           ¦   Infrastructure.GlobalUsings.g.cs
+    ¦           ¦   
+    ¦           +---ref
+    ¦           +---refint
+    +---Persistence
+    ¦       AppDbContext.cs
+    ¦       
+    +---Query
+    ¦       EmailVerificationQuery.cs
+    ¦       PasswordResetQuery.cs
+    ¦       RefreshTokenQuery.cs
+    ¦       UserQuery.cs
+    ¦       
+    +---Repositories
+    ¦       NotificationRepository.cs
+    ¦       
+    +---Service
+        ¦   ArgentinaTimeProvider.cs
+        ¦   JwtService.cs
+        ¦   NotificationDispatcher.cs
+        ¦   ResetCodeGenerator.cs
+        ¦   
+        +---NotificationFormatter
+                AppointmentCancelledByDoctorDoctorFormatter.cs
+                AppointmentCancelledByDoctorFormatter.cs
+                AppointmentCancelledByPatientDoctorFormatter.cs
+                AppointmentCancelledByPatientFormatter.cs
+                AppointmentConfirmedDoctorFormatter.cs
+                AppointmentConfirmedFormatter.cs
+                AppointmentCreatedDoctorFormatter.cs
+                AppointmentCreatedFormatter.cs
+                AppointmentReminderFormatter.cs
+                AppointmentRescheduledDoctorFormatter.cs
+                AppointmentRescheduledFormatter.cs
+                ConsultationStartedFormatter.cs
+                DefaultNotificationFormatter.cs
+                MedicationReminderFormatter.cs
+                PrescriptionReadyFormatter.cs
+                
