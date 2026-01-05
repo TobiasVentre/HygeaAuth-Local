@@ -40,17 +40,23 @@ namespace Application.UseCase.UserServices
             await CheckEmailExist(request.Email);
             var hashedPassword = await _cryptographyService.HashPassword(request.Password);
 
-            // Validar y asignar el rol: si viene vacío o null, por defecto es Client
-            var role = string.IsNullOrWhiteSpace(request.Role) 
-                ? UserRoles.Client
-                : request.Role.Trim(); // Limpiar espacios en blanco
+            var roleRaw = string.IsNullOrWhiteSpace(request.Role) ? UserRoles.Client : request.Role.Trim();
 
-            // Validar que el rol sea válido (comparación case-sensitive)
+            // Normalizar a los valores canónicos (UserRoles.*) aceptando minúsculas
+            string role =
+                roleRaw.Equals("client", StringComparison.OrdinalIgnoreCase) ? UserRoles.Client :
+                roleRaw.Equals("fumigator", StringComparison.OrdinalIgnoreCase) ? UserRoles.Fumigator :
+                roleRaw.Equals("admin", StringComparison.OrdinalIgnoreCase) ? UserRoles.Admin :
+                roleRaw;
+
+            // Si NO querés permitir admin desde registro público, dejalo fuera acá
             if (role != UserRoles.Client && role != UserRoles.Fumigator)
             {
-                throw new InvalidValueException($"El rol '{role}' no es válido. Los roles permitidos son: '{UserRoles.Client}',{UserRoles.Fumigator} o '{UserRoles.Admin} '");
+                throw new InvalidValueException(
+                    $"El rol '{roleRaw}' no es válido. Los roles permitidos son: '{UserRoles.Client}' o '{UserRoles.Fumigator}'."
+                );
             }
-            
+
             _logger.LogInformation("Registrando usuario con rol: {Role}", role);
             var user = new User
             {

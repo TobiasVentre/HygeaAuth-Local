@@ -8,17 +8,15 @@
         public string Email { get; set; }
         public string Dni { get; set; }
         public string Password { get; set; }
-        public string Role { get; set; } // "Patient" o "Doctor"
+        public string Role { get; set; } // "Client", "Fumigator" o "Admin"
         public string Phone { get; set; }
         // Datos opcionales
 
-        // Datos de Patient
+        // Datos de Client
         public DateOnly? DateOfBirth { get; set; }
         public string? Adress { get; set; }
-        public string? HealthPlan { get; set; }
-        public string? MembershipNumber { get; set; }
 
-        // Datos de Doctor
+        // Datos de fumigator
         public string? LicenseNumber { get; set; }
         public string? Biography { get; set; }
         public string? Specialty { get; set; }
