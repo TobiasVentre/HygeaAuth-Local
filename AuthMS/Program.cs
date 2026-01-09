@@ -72,6 +72,7 @@ builder.Services.AddScoped<IRefreshTokenService, RefreshTokenService>();
 builder.Services.AddScoped<IEmailService, EmailService>();
 builder.Services.AddSingleton<IResetCodeGenerator, ResetCodeGenerator>();
 builder.Services.AddScoped<IEmailVerificationService, EmailVerificationService>();
+builder.Services.AddScoped<IAuthorizationService, AuthorizationService>();
 builder.Services.AddScoped<INotificationRepository, NotificationRepository>();
 builder.Services.AddScoped<INotificationService, NotificationService>();
 builder.Services.AddHostedService<NotificationDispatcher>();
@@ -157,10 +158,10 @@ builder.Services.AddAuthorization(options =>
         policy.RequireClaim(CustomClaims.CanViewOwnAppointments, "true"));
 
     // Política para fumigadores únicamente
-    options.AddPolicy("DoctorOnly", policy =>
+    options.AddPolicy("FumigatorOnly", policy =>
         policy.RequireRole(UserRoles.Fumigator));
 
-    // Política para pacientes únicamente
+    // Política para clientes únicamente
     options.AddPolicy("ClientOnly", policy =>
         policy.RequireRole(UserRoles.Client));
 

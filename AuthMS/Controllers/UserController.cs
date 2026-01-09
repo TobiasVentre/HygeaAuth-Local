@@ -124,7 +124,7 @@ namespace AuthMS.Controllers
         /// </summary>
         /// <param name="id">ID único del usuario</param>
         /// <response code="200">Success</response>
-        [Authorize(Policy = "CanViewPatientInfo")]
+        [Authorize(Policy = "CanViewClientInfo")]
         [HttpGet("{id}")]
         [ProducesResponseType(typeof(UserResponse), 200)]
         [ProducesResponseType(typeof(ApiError), 400)]
@@ -147,19 +147,19 @@ namespace AuthMS.Controllers
         }
 
         /// <summary>
-        /// Obtiene información básica de doctores (ejemplo de uso de políticas)
+        /// Obtiene información básica de fumigadores (ejemplo de uso de políticas)
         /// </summary>
         /// <response code="200">Success</response>
-        [Authorize(Policy = "CanViewDoctorInfo")]
-        [HttpGet("doctors/info")]
+        [Authorize(Policy = "CanViewFumigatorInfo")]
+        [HttpGet("fumigators/info")]
         [ProducesResponseType(typeof(GenericResponse), 200)]
         [ProducesResponseType(typeof(ApiError), 401)]
-        public async Task<IActionResult> GetDoctorsInfo()
+        public async Task<IActionResult> GetFumigatorsInfo()
         {
             try
             {
                 // Ejemplo de endpoint que requiere política específica
-                return Ok(new GenericResponse { Message = "Información de doctores obtenida exitosamente" });
+                return Ok(new GenericResponse { Message = "Información de fumigadores obtenida exitosamente" });
             }
             catch (Exception ex)
             {

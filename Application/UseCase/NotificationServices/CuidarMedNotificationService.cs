@@ -20,7 +20,7 @@ namespace Application.UseCase.NotificationServices
         }
 
         /// <summary>
-        /// Crea una notificación cuando se crea un turno médico
+        /// Crea una notificación cuando se crea un turno de servicio
         /// </summary>
         public async Task CreateAppointmentCreatedNotification(int userId, AppointmentPayload appointmentData)
         {

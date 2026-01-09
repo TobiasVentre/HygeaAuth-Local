@@ -115,9 +115,6 @@ namespace Infrastructure.Service
                 claims.AddClaim(new Claim(CustomClaims.CanManageSchedule, "true"));
                 claims.AddClaim(new Claim(CustomClaims.CanViewClientInfo, "true"));
                 
-                // Claims específicos de fumagadores (ejemplo - puedes expandir según tu modelo)
-                // claims.AddClaim(new Claim(CustomClaims.Specialty, user.Specialty ?? ""));
-                // claims.AddClaim(new Claim(CustomClaims.LicenseNumber, user.LicenseNumber ?? ""));
             }
 
             // Permisos específicos para clientes
@@ -126,7 +123,7 @@ namespace Infrastructure.Service
                 claims.AddClaim(new Claim(CustomClaims.CanViewClientInfo, "true"));
                 claims.AddClaim(new Claim(CustomClaims.UserId, user.UserId.ToString()));
                 
-                // Los pacientes pueden ver información básica de fumigadores  para reservar turnos
+                // Los clientes pueden ver información básica de fumigadores para reservar turnos
                 claims.AddClaim(new Claim(CustomClaims.CanViewFumigatorInfo, "limited"));
             }
         }
