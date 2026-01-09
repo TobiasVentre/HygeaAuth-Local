@@ -35,14 +35,14 @@ namespace Application.Interfaces.IServices
 
 
         /// <summary>
-        /// Verifica si el usuario actual es médico
+        /// Verifica si el usuario actual es fumigador
         /// </summary>
-        bool IsDoctor();
+        bool IsFumigator();
 
         /// <summary>
-        /// Verifica si el usuario actual es paciente
+        /// Verifica si el usuario actual es cliente
         /// </summary>
-        bool IsPatient();
+        bool IsClient();
 
         /// <summary>
         /// Obtiene todos los claims del usuario actual

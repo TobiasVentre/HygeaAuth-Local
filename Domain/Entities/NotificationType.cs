@@ -8,7 +8,7 @@ namespace Domain.Entities
 {
     public enum NotificationType
     {
-        // Turnos médicos
+        // Turnos de servicio
         AppointmentCreated,
         AppointmentConfirmed,
         AppointmentConfirmedDoctor,
@@ -19,7 +19,7 @@ namespace Domain.Entities
 
         AppointmentRescheduledDoctor,
 
-        // Notificación al doctor
+        // Notificación al fumigador
         AppointmentCreatedDoctor,
 
 
@@ -28,7 +28,7 @@ namespace Domain.Entities
         AppointmentCancelledByDoctor,
         AppointmentCancelledByDoctorDoctor,
 
-        // Consultas médicas
+        // Consultas de servicio
         ConsultationStarted,
         ConsultationEnded,
         ConsultationCancelled,
@@ -38,7 +38,7 @@ namespace Domain.Entities
         MedicalOrderReady,
         DocumentGenerated,
         
-        // Recordatorios médicos
+        // Recordatorios de servicio
         MedicationReminder,
         FollowUpReminder,
         TestResultsReady,

@@ -61,7 +61,7 @@ namespace AuthMS.Controllers
         }
 
         /// <summary>
-        /// Actualiza el perfil del médico autenticado
+        /// Actualiza el perfil del fumigador autenticado
         /// </summary>
         /// <param name="request">Datos actualizados del fumigador</param>
         /// <response code="200">Success</response>
@@ -117,8 +117,8 @@ namespace AuthMS.Controllers
                     return Unauthorized(new ApiError { Message = "Usuario no autenticado" });
                 }
 
-                // Implementar lógica para obtener agenda del médico
-                return Ok(new GenericResponse { Message = "Agenda del médico" });
+                // Implementar lógica para obtener agenda del fumigador
+                return Ok(new GenericResponse { Message = "Agenda del fumigador" });
             }
             catch (Exception ex)
             {
@@ -133,7 +133,7 @@ namespace AuthMS.Controllers
         [HttpGet("clients")]
         [ProducesResponseType(typeof(GenericResponse), 200)]
         [ProducesResponseType(typeof(ApiError), 401)]
-        public async Task<IActionResult> GetMyPatients()
+        public async Task<IActionResult> GetMyClients()
         {
             try
             {
@@ -143,7 +143,7 @@ namespace AuthMS.Controllers
                     return Unauthorized(new ApiError { Message = "Usuario no autenticado" });
                 }
 
-                // Implementar lógica para obtener pacientes del médico
+                // Implementar lógica para obtener clientes del fumigador
                 return Ok(new GenericResponse { Message = "Lista de clientes del fumigador" });
             }
             catch (Exception ex)
@@ -161,7 +161,7 @@ namespace AuthMS.Controllers
         [ProducesResponseType(typeof(GenericResponse), 200)]
         [ProducesResponseType(typeof(ApiError), 401)]
         [ProducesResponseType(typeof(ApiError), 403)]
-        public async Task<IActionResult> GetPatientMedicalHistory(int clientId)
+        public async Task<IActionResult> GetClientFumigationHistory(int clientId)
         {
             try
             {
@@ -171,14 +171,14 @@ namespace AuthMS.Controllers
                     return Unauthorized(new ApiError { Message = "Usuario no autenticado" });
                 }
 
-                // Verificar que el médico puede acceder a este paciente
+                // Verificar que el fumigador puede acceder a este cliente
                 if (!_authorizationService.CanAccessUserData(clientId))
                 {
-                    return Forbid("No tienes permisos para acceder a este paciente");
+                    return Forbid("No tienes permisos para acceder a este cliente");
                 }
 
-                // Implementar lógica para obtener historial médico del paciente
-                return Ok(new GenericResponse { Message = $"Historial médico del paciente {clientId}" });
+                // Implementar lógica para obtener historial de fumigaciones del cliente
+                return Ok(new GenericResponse { Message = $"Historial de fumigaciones del cliente {clientId}" });
             }
             catch (Exception ex)
             {
@@ -205,8 +205,8 @@ namespace AuthMS.Controllers
                     return Unauthorized(new ApiError { Message = "Usuario no autenticado" });
                 }
 
-                // Implementar lógica para crear cita médica
-                return CreatedAtAction(nameof(GetMySchedule), new GenericResponse { Message = "Cita médica creada exitosamente" });
+                // Implementar lógica para crear cita de servicio
+                return CreatedAtAction(nameof(GetMySchedule), new GenericResponse { Message = "Cita de servicio creada exitosamente" });
             }
             catch (Exception ex)
             {
