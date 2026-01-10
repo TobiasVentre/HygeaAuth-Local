@@ -108,7 +108,7 @@ var jwtKey = builder.Configuration["JwtSettings:key"];
 
 if (string.IsNullOrEmpty(jwtKey))
 {
-    throw new Exception("No se encontro 'JwtSettings:key'. Configoralo en User Secrets o Variables de Entorno.");
+    throw new Exception("No se encontro 'JwtSettings:key'. Configuralo en User Secrets o Variables de Entorno.");
 }
 
 builder.Services.AddAuthentication(config =>
@@ -201,6 +201,10 @@ using (var scope = app.Services.CreateScope())
     try
     {
         logger.LogInformation("Applying database migrations...");
+        logger.LogInformation("EF DataSource: {Ds}", dbContext.Database.GetDbConnection().DataSource);
+        logger.LogInformation("EF Database: {Db}", dbContext.Database.GetDbConnection().Database);
+        logger.LogInformation("EF ConnectionString: {Cs}", dbContext.Database.GetDbConnection().ConnectionString);
+
         dbContext.Database.Migrate();
         logger.LogInformation("Database migrations applied successfully.");
     }
