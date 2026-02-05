@@ -35,9 +35,9 @@ namespace Application.Interfaces.IServices
 
 
         /// <summary>
-        /// Verifica si el usuario actual es fumigador
+        /// Verifica si el usuario actual es técnico
         /// </summary>
-        bool IsFumigator();
+        bool IsTechnician();
 
         /// <summary>
         /// Verifica si el usuario actual es cliente

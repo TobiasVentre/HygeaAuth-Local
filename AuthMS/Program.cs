@@ -137,9 +137,9 @@ builder.Services.AddAuthorization(options =>
     options.AddPolicy("CanEditOwnProfile", policy =>
         policy.RequireClaim(CustomClaims.CanEditOwnProfile, "true"));
 
-    // Política para ver información de Fumigadores
-    options.AddPolicy("CanViewFumigatorInfo", policy =>
-        policy.RequireClaim(CustomClaims.CanViewFumigatorInfo, "true", "limited"));
+    // Política para ver información de Técnicos
+    options.AddPolicy("CanViewTechnicianInfo", policy =>
+        policy.RequireClaim(CustomClaims.CanViewTechnicianInfo, "true", "limited"));
 
     // Política para ver información de clientes
     options.AddPolicy("CanViewClientInfo", policy =>
@@ -157,9 +157,9 @@ builder.Services.AddAuthorization(options =>
     options.AddPolicy("CanViewOwnAppointments", policy =>
         policy.RequireClaim(CustomClaims.CanViewOwnAppointments, "true"));
 
-    // Política para fumigadores únicamente
-    options.AddPolicy("FumigatorOnly", policy =>
-        policy.RequireRole(UserRoles.Fumigator));
+    // Política para técnicos únicamente
+    options.AddPolicy("TechnicianOnly", policy =>
+        policy.RequireRole(UserRoles.Technician));
 
     // Política para clientes únicamente
     options.AddPolicy("ClientOnly", policy =>

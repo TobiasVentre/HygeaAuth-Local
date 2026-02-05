@@ -39,10 +39,22 @@ namespace Application.Validators
               .Must(role =>
                   string.IsNullOrWhiteSpace(role) ||
                   role.Trim().Equals("client", StringComparison.OrdinalIgnoreCase) ||
-                  role.Trim().Equals("fumigator", StringComparison.OrdinalIgnoreCase) ||
+                  role.Trim().Equals("technician", StringComparison.OrdinalIgnoreCase) ||
                   role.Trim().Equals("admin", StringComparison.OrdinalIgnoreCase)
               )
-              .WithMessage("El rol debe ser 'client', 'fumigator' o 'admin' si se proporciona.");
+              .WithMessage("El rol debe ser 'client', 'technician' o 'admin' si se proporciona.");
+
+            RuleFor(u => u.Specialty)
+                .NotEmpty()
+                .When(u => !string.IsNullOrWhiteSpace(u.Role) &&
+                           u.Role.Trim().Equals("technician", StringComparison.OrdinalIgnoreCase))
+                .WithMessage("La especialidad es obligatoria para el rol 'technician'.");
+
+            RuleFor(u => u.Specialty)
+                .Must(specialty => string.IsNullOrWhiteSpace(specialty))
+                .When(u => !string.IsNullOrWhiteSpace(u.Role) &&
+                           u.Role.Trim().Equals("client", StringComparison.OrdinalIgnoreCase))
+                .WithMessage("La especialidad no debe enviarse para el rol 'client'.");
 
 
         }

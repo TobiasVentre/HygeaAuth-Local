@@ -128,7 +128,7 @@ namespace AuthMS.Controllers
         }
 
         /// <summary>
-        /// Obtiene el historial de fumigaciones del cliente autenticado
+        /// Obtiene el historial de servicios del cliente autenticado
         /// </summary>
         /// <response code="200">Success</response>
         [HttpGet("medical-history")]
@@ -144,8 +144,8 @@ namespace AuthMS.Controllers
                     return Unauthorized(new ApiError { Message = "Usuario no autenticado" });
                 }
 
-                // Implementar lógica para obtener historial de fumigaciones
-                return Ok(new GenericResponse { Message = "Historial de fumigaciones del cliente" });
+                // Implementar lógica para obtener historial de servicios
+                return Ok(new GenericResponse { Message = "Historial de servicios del cliente" });
             }
             catch (Exception ex)
             {

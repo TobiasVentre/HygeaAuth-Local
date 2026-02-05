@@ -56,12 +56,12 @@ namespace Infrastructure.Service
                 return true;
             }
 
-            return HasRole(UserRoles.Fumigator);
+            return HasRole(UserRoles.Technician);
         }
 
-        public bool IsFumigator()
+        public bool IsTechnician()
         {
-            return HasRole(UserRoles.Fumigator);
+            return HasRole(UserRoles.Technician);
         }
 
         public bool IsClient()

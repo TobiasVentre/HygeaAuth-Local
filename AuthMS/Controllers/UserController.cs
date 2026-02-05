@@ -147,19 +147,19 @@ namespace AuthMS.Controllers
         }
 
         /// <summary>
-        /// Obtiene información básica de fumigadores (ejemplo de uso de políticas)
+        /// Obtiene información básica de técnicos (ejemplo de uso de políticas)
         /// </summary>
         /// <response code="200">Success</response>
-        [Authorize(Policy = "CanViewFumigatorInfo")]
-        [HttpGet("fumigators/info")]
+        [Authorize(Policy = "CanViewTechnicianInfo")]
+        [HttpGet("technicians/info")]
         [ProducesResponseType(typeof(GenericResponse), 200)]
         [ProducesResponseType(typeof(ApiError), 401)]
-        public async Task<IActionResult> GetFumigatorsInfo()
+        public async Task<IActionResult> GetTechniciansInfo()
         {
             try
             {
                 // Ejemplo de endpoint que requiere política específica
-                return Ok(new GenericResponse { Message = "Información de fumigadores obtenida exitosamente" });
+                return Ok(new GenericResponse { Message = "Información de técnicos obtenida exitosamente" });
             }
             catch (Exception ex)
             {

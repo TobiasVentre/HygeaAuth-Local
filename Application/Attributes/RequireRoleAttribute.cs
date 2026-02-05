@@ -16,12 +16,12 @@ namespace Application.Attributes
     }
 
     /// <summary>
-    /// Atributo para endpoints solo de fumigador
+    /// Atributo para endpoints solo de técnico
     /// </summary>
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = false)]
-    public class RequireFumigatorAttribute : RequireRoleAttribute
+    public class RequireTechnicianAttribute : RequireRoleAttribute
     {
-        public RequireFumigatorAttribute() : base("Fumigator") { }
+        public RequireTechnicianAttribute() : base("Technician") { }
     }
 
     /// <summary>
@@ -34,11 +34,11 @@ namespace Application.Attributes
     }
 
     /// <summary>
-    /// Atributo para endpoints de clientes y fumigadores
+    /// Atributo para endpoints de clientes y técnicos
     /// </summary>
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = false)]
-    public class RequireClientOrFumigatorAttribute : RequireRoleAttribute
+    public class RequireClientOrTechnicianAttribute : RequireRoleAttribute
     {
-        public RequireClientOrFumigatorAttribute() : base("Client", "Fumigator") { }
+        public RequireClientOrTechnicianAttribute() : base("Client", "Technician") { }
     }
 }

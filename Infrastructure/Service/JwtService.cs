@@ -107,10 +107,10 @@ namespace Infrastructure.Service
             claims.AddClaim(new Claim(CustomClaims.CanEditOwnProfile, "true"));
             claims.AddClaim(new Claim(CustomClaims.CanViewOwnAppointments, "true"));
 
-            // Permisos específicos para fumigadores
-            if (user.Role == UserRoles.Fumigator)
+            // Permisos específicos para técnicos
+            if (user.Role == UserRoles.Technician)
             {
-                claims.AddClaim(new Claim(CustomClaims.CanViewFumigatorInfo, "true"));
+                claims.AddClaim(new Claim(CustomClaims.CanViewTechnicianInfo, "true"));
                 claims.AddClaim(new Claim(CustomClaims.CanManageAppointments, "true"));
                 claims.AddClaim(new Claim(CustomClaims.CanManageSchedule, "true"));
                 claims.AddClaim(new Claim(CustomClaims.CanViewClientInfo, "true"));
@@ -123,8 +123,8 @@ namespace Infrastructure.Service
                 claims.AddClaim(new Claim(CustomClaims.CanViewClientInfo, "true"));
                 claims.AddClaim(new Claim(CustomClaims.UserId, user.UserId.ToString()));
                 
-                // Los clientes pueden ver información básica de fumigadores para reservar turnos
-                claims.AddClaim(new Claim(CustomClaims.CanViewFumigatorInfo, "limited"));
+                // Los clientes pueden ver información básica de técnicos para reservar turnos
+                claims.AddClaim(new Claim(CustomClaims.CanViewTechnicianInfo, "limited"));
             }
         }
         
