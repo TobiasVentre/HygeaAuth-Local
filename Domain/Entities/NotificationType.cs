@@ -19,7 +19,7 @@ namespace Domain.Entities
 
         AppointmentRescheduledDoctor,
 
-        // Notificación al fumigador
+        // Notificación al técnico
         AppointmentCreatedDoctor,
 
 

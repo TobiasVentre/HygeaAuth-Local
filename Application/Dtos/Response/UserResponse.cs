@@ -10,6 +10,7 @@ namespace Application.Dtos.Response
         public string Email { get; set; }
         public string Dni { get; set; }
         public string Role { get; set; }
+        public string? Specialty { get; set; }
 
 
 
@@ -22,7 +23,8 @@ namespace Application.Dtos.Response
                 LastName = user.LastName,
                 Email = user.Email,
                 Dni = user.Dni,
-                Role = user.Role
+                Role = user.Role,
+                Specialty = user.Specialty
             };
         }
     }

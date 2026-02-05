@@ -9,7 +9,7 @@ namespace Domain.Entities
     public static class UserRoles
     {        
         public const string Client = "Client";
-        public const string Fumigator = "Fumigator";
+        public const string Technician = "Technician";
         public const string Admin = "Admin";
     }
 }

@@ -16,14 +16,14 @@ namespace AuthMS.Controllers
 {
     [Route("api/v1/[controller]")]
     [ApiController]
-    [RequireFumigator]
-    public class FumigatorController : ControllerBase
+    [RequireTechnician]
+    public class TechnicianController : ControllerBase
     {
         private readonly CustomAuthService _authorizationService;
         private readonly IUserQuery _userQuery;
         private readonly IUserPutServices _userPutService;
 
-        public FumigatorController(CustomAuthService authorizationService, IUserQuery userQuery, IUserPutServices userPutService)
+        public TechnicianController(CustomAuthService authorizationService, IUserQuery userQuery, IUserPutServices userPutService)
         {
             _authorizationService = authorizationService;
             _userQuery = userQuery;
@@ -31,7 +31,7 @@ namespace AuthMS.Controllers
         }
 
         /// <summary>
-        /// Obtiene el perfil del fumigador autenticado
+        /// Obtiene el perfil del técnico autenticado
         /// </summary>
         /// <response code="200">Success</response>
         [HttpGet("profile")]
@@ -61,9 +61,9 @@ namespace AuthMS.Controllers
         }
 
         /// <summary>
-        /// Actualiza el perfil del fumigador autenticado
+        /// Actualiza el perfil del técnico autenticado
         /// </summary>
-        /// <param name="request">Datos actualizados del fumigador</param>
+        /// <param name="request">Datos actualizados del técnico</param>
         /// <response code="200">Success</response>
         [HttpPut("profile")]
         [ProducesResponseType(typeof(UserResponse), 200)]
@@ -80,7 +80,7 @@ namespace AuthMS.Controllers
                 }
 
                 // Validar que el usuario esté intentando actualizar su propio perfil
-                // (ya está garantizado por RequireFumigator, pero por seguridad adicional)
+                // (ya está garantizado por RequireTechnician, pero por seguridad adicional)
                 
                 // Actualizar el usuario usando el servicio
                 var result = await _userPutService.UpdateUser(userId.Value, request);
@@ -101,7 +101,7 @@ namespace AuthMS.Controllers
         }
 
         /// <summary>
-        /// Obtiene la agenda del fumigador autenticado
+        /// Obtiene la agenda del técnico autenticado
         /// </summary>
         /// <response code="200">Success</response>
         [HttpGet("schedule")]
@@ -117,8 +117,8 @@ namespace AuthMS.Controllers
                     return Unauthorized(new ApiError { Message = "Usuario no autenticado" });
                 }
 
-                // Implementar lógica para obtener agenda del fumigador
-                return Ok(new GenericResponse { Message = "Agenda del fumigador" });
+                // Implementar lógica para obtener agenda del técnico
+                return Ok(new GenericResponse { Message = "Agenda del técnico" });
             }
             catch (Exception ex)
             {
@@ -127,7 +127,7 @@ namespace AuthMS.Controllers
         }
 
         /// <summary>
-        /// Obtiene los clientes del fumigador autenticado
+        /// Obtiene los clientes del técnico autenticado
         /// </summary>
         /// <response code="200">Success</response>
         [HttpGet("clients")]
@@ -143,8 +143,8 @@ namespace AuthMS.Controllers
                     return Unauthorized(new ApiError { Message = "Usuario no autenticado" });
                 }
 
-                // Implementar lógica para obtener clientes del fumigador
-                return Ok(new GenericResponse { Message = "Lista de clientes del fumigador" });
+                // Implementar lógica para obtener clientes del técnico
+                return Ok(new GenericResponse { Message = "Lista de clientes del técnico" });
             }
             catch (Exception ex)
             {
@@ -153,11 +153,11 @@ namespace AuthMS.Controllers
         }
 
         /// <summary>
-        /// Obtiene el historial de fumigaciones de un cliente específico
+        /// Obtiene el historial de servicios de un cliente específico
         /// </summary>
         /// <param name="clientId">ID del client</param>
         /// <response code="200">Success</response>
-        [HttpGet("client/{clientId}/fumigation-history")]
+        [HttpGet("client/{clientId}/service-history")]
         [ProducesResponseType(typeof(GenericResponse), 200)]
         [ProducesResponseType(typeof(ApiError), 401)]
         [ProducesResponseType(typeof(ApiError), 403)]
@@ -171,14 +171,14 @@ namespace AuthMS.Controllers
                     return Unauthorized(new ApiError { Message = "Usuario no autenticado" });
                 }
 
-                // Verificar que el fumigador puede acceder a este cliente
+                // Verificar que el técnico puede acceder a este cliente
                 if (!_authorizationService.CanAccessUserData(clientId))
                 {
                     return Forbid("No tienes permisos para acceder a este cliente");
                 }
 
-                // Implementar lógica para obtener historial de fumigaciones del cliente
-                return Ok(new GenericResponse { Message = $"Historial de fumigaciones del cliente {clientId}" });
+                // Implementar lógica para obtener historial de servicios del cliente
+                return Ok(new GenericResponse { Message = $"Historial de servicios del cliente {clientId}" });
             }
             catch (Exception ex)
             {

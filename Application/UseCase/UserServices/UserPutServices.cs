@@ -36,8 +36,24 @@ namespace Application.UseCase.UserServices
             user.LastName = request.LastName;
             user.Email = request.Email;
             user.Dni = request.Dni;
-            
-            
+
+            if (user.Role == Domain.Entities.UserRoles.Client && !string.IsNullOrWhiteSpace(request.Specialty))
+            {
+                throw new InvalidValueException("La especialidad no debe enviarse para el rol 'Client'.");
+            }
+
+            if (user.Role == Domain.Entities.UserRoles.Technician)
+            {
+                if (request.Specialty != null && string.IsNullOrWhiteSpace(request.Specialty))
+                {
+                    throw new InvalidValueException("La especialidad no puede estar vacía para el rol 'Technician'.");
+                }
+
+                if (request.Specialty != null)
+                {
+                    user.Specialty = request.Specialty.Trim();
+                }
+            }
 
             await _userCommand.Update(user);
 
@@ -48,7 +64,8 @@ namespace Application.UseCase.UserServices
                 LastName = user.LastName,
                 Email = user.Email,
                 Dni = user.Dni,
-                Role = user.Role
+                Role = user.Role,
+                Specialty = user.Specialty
             };
         }
 

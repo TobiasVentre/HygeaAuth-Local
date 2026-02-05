@@ -63,6 +63,11 @@ namespace Infrastructure.Persistence
                     .HasColumnType("varchar")
                     .IsRequired();
 
+                entity.Property(u => u.Specialty)
+                    .HasMaxLength(100)
+                    .HasColumnType("varchar")
+                    .IsRequired(false);
+
                 entity.Property(u => u.AccessFailedCount)
                     .IsRequired()
                     .HasDefaultValue(0);

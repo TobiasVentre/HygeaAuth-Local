@@ -45,16 +45,26 @@ namespace Application.UseCase.UserServices
             // Normalizar a los valores canónicos (UserRoles.*) aceptando minúsculas
             string role =
                 roleRaw.Equals("client", StringComparison.OrdinalIgnoreCase) ? UserRoles.Client :
-                roleRaw.Equals("fumigator", StringComparison.OrdinalIgnoreCase) ? UserRoles.Fumigator :
+                roleRaw.Equals("technician", StringComparison.OrdinalIgnoreCase) ? UserRoles.Technician :
                 roleRaw.Equals("admin", StringComparison.OrdinalIgnoreCase) ? UserRoles.Admin :
                 roleRaw;
 
             // Si NO querés permitir admin desde registro público, dejalo fuera acá
-            if (role != UserRoles.Client && role != UserRoles.Fumigator)
+            if (role != UserRoles.Client && role != UserRoles.Technician)
             {
                 throw new InvalidValueException(
-                    $"El rol '{roleRaw}' no es válido. Los roles permitidos son: '{UserRoles.Client}' o '{UserRoles.Fumigator}'."
+                    $"El rol '{roleRaw}' no es válido. Los roles permitidos son: '{UserRoles.Client}' o '{UserRoles.Technician}'."
                 );
+            }
+
+            if (role == UserRoles.Technician && string.IsNullOrWhiteSpace(request.Specialty))
+            {
+                throw new InvalidValueException("La especialidad es obligatoria para el rol 'Technician'.");
+            }
+
+            if (role == UserRoles.Client && !string.IsNullOrWhiteSpace(request.Specialty))
+            {
+                throw new InvalidValueException("La especialidad no debe enviarse para el rol 'Client'.");
             }
 
             _logger.LogInformation("Registrando usuario con rol: {Role}", role);
@@ -67,6 +77,7 @@ namespace Application.UseCase.UserServices
                 Email = request.Email,
                 Dni = request.Dni,
                 Password = hashedPassword,
+                Specialty = role == UserRoles.Technician ? request.Specialty?.Trim() : null,
                 IsEmailVerified = false, // La cuenta no está verificada hasta que se confirme el código
             };            
             
@@ -87,7 +98,8 @@ namespace Application.UseCase.UserServices
                 LastName = user.LastName,
                 Email = user.Email,
                 Dni = user.Dni,
-                Role = user.Role
+                Role = user.Role,
+                Specialty = user.Specialty
             };           
         }
 

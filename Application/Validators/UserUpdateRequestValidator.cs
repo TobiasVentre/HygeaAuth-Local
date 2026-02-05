@@ -27,6 +27,10 @@ namespace Application.Validators
             RuleFor(u => u.Dni)
                 .NotEmpty().WithMessage("El DNI es obligatorio.")
                 .Matches(@"^[A-Za-z0-9]{6,12}$").WithMessage("El DNI debe contener entre 6 y 12 caracteres alfanuméricos.");
+
+            RuleFor(u => u.Specialty)
+                .Must(specialty => string.IsNullOrWhiteSpace(specialty) || specialty.Trim().Length > 0)
+                .WithMessage("La especialidad no puede ser un valor vacío.");
         }
     }
 }

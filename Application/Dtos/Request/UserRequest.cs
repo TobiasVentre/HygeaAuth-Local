@@ -8,7 +8,7 @@
         public string Email { get; set; }
         public string Dni { get; set; }
         public string Password { get; set; }
-        public string Role { get; set; } // "Client", "Fumigator" o "Admin"
+        public string Role { get; set; } // "Client", "Technician" o "Admin"
         public string Phone { get; set; }
         // Datos opcionales
 
@@ -16,7 +16,7 @@
         public DateOnly? DateOfBirth { get; set; }
         public string? Adress { get; set; }
 
-        // Datos de fumigator
+        // Datos de technician
         public string? LicenseNumber { get; set; }
         public string? Biography { get; set; }
         public string? Specialty { get; set; }
