@@ -57,3 +57,13 @@ UpgradeLog*.htm
 *.dbproj.schemaview
 *.log
 *.env
+.dotnet/
+.tools/
+.nuget/
+coverage-report/
+_verify*/
+*-diag.log
+build-diag.log
+sln-build-diag.log
+restore-diag.log
+tests-build-diag.log

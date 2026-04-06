@@ -1,0 +1,15 @@
+﻿using Application.Dtos.Request;
+using Application.Dtos.Response;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Application.Interfaces.IServices.IUserServices
+{
+    public interface IUserPutServices
+    {
+        Task<UserResponse> UpdateUser(Guid Id, UserUpdateRequest request);
+    }
+}
