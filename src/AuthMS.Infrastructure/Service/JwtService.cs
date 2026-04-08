@@ -73,7 +73,7 @@ namespace Infrastructure.Service
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = claims,
-                Expires = DateTime.UtcNow.AddMinutes(int.Parse(_configuration["JwtSettings:TokenExpirationMinutes"]!)),
+                Expires = DateTime.UtcNow.AddMinutes(GetAccessTokenLifetimeInMinutes()),
                 IssuedAt = DateTime.UtcNow,
                 SigningCredentials = signingCredentials
             };
@@ -87,7 +87,10 @@ namespace Infrastructure.Service
 
         public Task<string> GenerateRefreshToken()
         {
-            var size = int.Parse(_configuration["RefreshTokenSettings:Lenght"]!);
+            var size = _configuration.GetValue<int?>("RefreshTokenSettings:Lenght")
+                ?? _configuration.GetValue<int?>("RefreshTokenSettings:Length")
+                ?? 64;
+
             var buffer = new byte[size];
             using var rn = RandomNumberGenerator.Create();
             rn.GetBytes(buffer);
@@ -96,7 +99,7 @@ namespace Infrastructure.Service
         }
         public Task<int> GetRefreshTokenLifetimeInMinutes()
         {
-            return Task.FromResult(int.Parse(_configuration["RefreshTokenSettings:LifeTimeInMinutes"]!));
+            return Task.FromResult(_configuration.GetValue<int?>("RefreshTokenSettings:LifeTimeInMinutes") ?? 240);
         }
 
         public int GetRefreshTokenIdleTimeoutInMinutes()
@@ -199,6 +202,11 @@ namespace Infrastructure.Service
             }
 
             return principal;
+        }
+
+        private int GetAccessTokenLifetimeInMinutes()
+        {
+            return _configuration.GetValue<int?>("JwtSettings:TokenExpirationMinutes") ?? 18000;
         }
         
     }
