@@ -49,6 +49,7 @@ namespace Infrastructure
             services.AddScoped<IAuthTokenService, JwtService>();
             services.AddScoped<IEmailService, EmailService>();
             services.AddScoped<IAuthorizationService, AuthorizationService>();
+            services.AddScoped<BootstrapUserSeeder>();
             services.AddHttpClient<IDirectoryProfileProvisioningService, DirectoryProfileProvisioningService>((serviceProvider, client) =>
             {
                 var configuration = serviceProvider.GetRequiredService<IConfiguration>();

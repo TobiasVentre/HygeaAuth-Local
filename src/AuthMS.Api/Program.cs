@@ -4,6 +4,7 @@ using AuthMS.Api;
 using AuthMS.Api.Middleware;
 using Infrastructure;
 using Infrastructure.Persistence;
+using Infrastructure.Service;
 using Microsoft.EntityFrameworkCore;
 
 static bool IsEfDesignTime()
@@ -32,6 +33,7 @@ if (!IsEfDesignTime())
 {
     using var scope = app.Services.CreateScope();
     var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+    var bootstrapUserSeeder = scope.ServiceProvider.GetRequiredService<BootstrapUserSeeder>();
     var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
 
     try
@@ -42,10 +44,13 @@ if (!IsEfDesignTime())
 
         dbContext.Database.Migrate();
         logger.LogInformation("Database migrations applied successfully.");
+
+        await bootstrapUserSeeder.SeedAsync();
+        logger.LogInformation("Bootstrap users checked successfully.");
     }
     catch (Exception ex)
     {
-        logger.LogError(ex, "Error applying database migrations. The application will continue but the database may not be up to date.");
+        logger.LogError(ex, "Error during AuthMS startup tasks. The application will continue but migrations or bootstrap users may be incomplete.");
     }
 }
 

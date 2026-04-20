@@ -1,8 +1,10 @@
 using Application.Interfaces.IServices.IAuthServices;
+using MailKit.Net.Smtp;
+using MailKit.Security;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using MimeKit;
 using System.Net;
-using System.Net.Mail;
 
 namespace Infrastructure.Service
 {
@@ -10,11 +12,13 @@ namespace Infrastructure.Service
     {
         private readonly string _smtpServer;
         private readonly int _smtpPort;
+        private readonly string _smtpUser;
         private readonly string _senderEmail;
         private readonly string _senderName;
         private readonly string? _senderPassword;
         private readonly bool _enableEmails;
         private readonly bool _enableSsl;
+        private readonly SecureSocketOptions _socketSecurity;
         private readonly string _appName;
         private readonly string _supportEmail;
         private readonly string? _portalBaseUrl;
@@ -38,6 +42,12 @@ namespace Infrastructure.Service
                 ? smtpPort
                 : 587;
 
+            _smtpUser = configuration["EmailSettings:SmtpUser"]
+                        ?? Environment.GetEnvironmentVariable("EmailSettings__SmtpUser")
+                        ?? configuration["EmailSettings:SenderEmail"]
+                        ?? Environment.GetEnvironmentVariable("EmailSettings__SenderEmail")
+                        ?? "cuidarmed.notificaciones@gmail.com";
+
             _senderEmail = configuration["EmailSettings:SenderEmail"]
                            ?? Environment.GetEnvironmentVariable("EmailSettings__SenderEmail")
                            ?? "cuidarmed.notificaciones@gmail.com";
@@ -60,6 +70,8 @@ namespace Infrastructure.Service
                 out var enableSsl)
                 ? enableSsl
                 : true;
+
+            _socketSecurity = ResolveSocketSecurity(configuration);
 
             _appName = configuration["EmailSettings:AppName"]
                        ?? Environment.GetEnvironmentVariable("EmailSettings__AppName")
@@ -164,30 +176,36 @@ namespace Infrastructure.Service
 
             try
             {
-                using var smtp = new SmtpClient(_smtpServer, _smtpPort)
-                {
-                    UseDefaultCredentials = false,
-                    Credentials = new NetworkCredential(_senderEmail, _senderPassword),
-                    EnableSsl = _enableSsl,
-                    DeliveryMethod = SmtpDeliveryMethod.Network
-                };
+                var senderPassword = _senderPassword ?? throw new InvalidOperationException("Falta EmailSettings:SenderPassword en configuracion o variables de entorno.");
 
-                using var mail = new MailMessage
-                {
-                    From = new MailAddress(_senderEmail, _senderName),
-                    Subject = subject,
-                    Body = body,
-                    IsBodyHtml = isHtml
-                };
+                using var smtp = new SmtpClient();
+                await smtp.ConnectAsync(_smtpServer, _smtpPort, _socketSecurity);
+                await smtp.AuthenticateAsync(_smtpUser, senderPassword);
 
-                mail.To.Add(to);
+                var mail = new MimeMessage();
+                mail.From.Add(new MailboxAddress(_senderName, _senderEmail));
+                mail.To.Add(MailboxAddress.Parse(to));
+                mail.Subject = subject;
 
                 if (!string.IsNullOrWhiteSpace(_supportEmail) && !string.Equals(_supportEmail, _senderEmail, StringComparison.OrdinalIgnoreCase))
                 {
-                    mail.ReplyToList.Add(new MailAddress(_supportEmail));
+                    mail.ReplyTo.Add(MailboxAddress.Parse(_supportEmail));
                 }
 
-                await smtp.SendMailAsync(mail);
+                var bodyBuilder = new BodyBuilder();
+                if (isHtml)
+                {
+                    bodyBuilder.HtmlBody = body;
+                }
+                else
+                {
+                    bodyBuilder.TextBody = body;
+                }
+
+                mail.Body = bodyBuilder.ToMessageBody();
+
+                await smtp.SendAsync(mail);
+                await smtp.DisconnectAsync(true);
                 _logger.LogInformation("Email sent to {Email}", to);
             }
             catch (Exception ex)
@@ -216,6 +234,25 @@ namespace Infrastructure.Service
                 || value.Contains("<table", StringComparison.OrdinalIgnoreCase)
                 || value.Contains("<div", StringComparison.OrdinalIgnoreCase)
                 || value.Contains("<p", StringComparison.OrdinalIgnoreCase);
+        }
+
+        private SecureSocketOptions ResolveSocketSecurity(IConfiguration configuration)
+        {
+            var configuredValue = configuration["EmailSettings:SocketSecurity"]
+                                  ?? Environment.GetEnvironmentVariable("EmailSettings__SocketSecurity");
+
+            if (!string.IsNullOrWhiteSpace(configuredValue))
+            {
+                if (Enum.TryParse<SecureSocketOptions>(configuredValue, ignoreCase: true, out var socketSecurity))
+                {
+                    return socketSecurity;
+                }
+
+                throw new InvalidOperationException(
+                    "EmailSettings:SocketSecurity no es valido. Valores soportados: Auto, None, SslOnConnect, StartTls, StartTlsWhenAvailable.");
+            }
+
+            return _enableSsl ? SecureSocketOptions.Auto : SecureSocketOptions.None;
         }
     }
 }
