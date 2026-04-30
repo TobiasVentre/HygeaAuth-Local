@@ -10,8 +10,8 @@ services:
 
       Integrations__DirectoryMS__BaseUrl: "http://host.docker.internal:8081/api/"
       JwtSettings__key: ${JWT_KEY:-dev-super-secret-key-change-me}
-      JwtSettings__issuer: ${JWT_ISSUER:-CuidarMed}
-      JwtSettings__audience: ${JWT_AUDIENCE:-CuidarMed}
+      JwtSettings__issuer: ${JWT_ISSUER:-Hygea}
+      JwtSettings__audience: ${JWT_AUDIENCE:-Hygea}
       JwtSettings__expiresInMinutes: ${JWT_EXPIRES_IN_MINUTES:-60}
       EmailSettings__SmtpServer: ${EMAIL_SMTP_SERVER:-mail.hygeagroup.com.ar}
       EmailSettings__SmtpPort: ${EMAIL_SMTP_PORT:-465}

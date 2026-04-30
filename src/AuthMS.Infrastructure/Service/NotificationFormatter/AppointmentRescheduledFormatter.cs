@@ -43,7 +43,7 @@ public class AppointmentRescheduledFormatter : INotificationFormatter
           <body style='font-family: Arial, sans-serif; color: #333;'>
             <div style='max-width: 600px; margin: 0 auto; padding: 20px;'>
 
-              <h2 style='color: #2c5aa0;'>🔄 CuidarMed+ — Turno Reprogramado</h2>
+              <h2 style='color: #2c5aa0;'>🔄 Hygea — Turno Reprogramado</h2>
 
               <p>Hola <strong>{user.FirstName} {user.LastName}</strong>,</p>
 

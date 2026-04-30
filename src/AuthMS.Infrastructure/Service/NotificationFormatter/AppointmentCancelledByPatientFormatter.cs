@@ -39,7 +39,7 @@ namespace Infrastructure.Service.NotificationFormatter
               <body style='font-family: Arial; color: #333;'>
                 <div style='max-width: 600px; margin: auto; padding: 20px;'>
 
-                  <h2 style='color: #2c5aa0;'>🗑️ CuidarMed+ — Cancelación Confirmada</h2>
+                  <h2 style='color: #2c5aa0;'>🗑️ Hygea — Cancelación Confirmada</h2>
 
                   <p>Hola <strong>{user.FirstName} {user.LastName}</strong>,</p>
 

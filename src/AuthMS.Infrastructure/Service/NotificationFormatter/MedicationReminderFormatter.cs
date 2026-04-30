@@ -26,7 +26,7 @@ namespace Infrastructure.Service.NotificationFormatter
             <html>
               <body style='font-family: Arial, sans-serif; color: #333;'>
                 <div style='max-width: 600px; margin: 0 auto; padding: 20px;'>
-                  <h2 style='color: #2c5aa0;'>🏥 CuidarMed+</h2>
+                  <h2 style='color: #2c5aa0;'>🏥 Hygea</h2>
                   
                   <p>Hola <strong>{user.FirstName} {user.LastName}</strong>,</p>
                   
@@ -58,7 +58,7 @@ namespace Infrastructure.Service.NotificationFormatter
                     <p style='margin: 0; color: #0c5460;'><strong>💡 Consejo:</strong> Mantén un registro de tus tomas para un mejor seguimiento del tratamiento.</p>
                   </div>
 
-                  <p>¡Cuida tu salud con <strong>CuidarMed+</strong>!</p>
+                  <p>¡Cuida tu salud con <strong>Hygea</strong>!</p>
                   
                   <hr style='border: none; border-top: 1px solid #eee; margin: 30px 0;'>
                   <p style='font-size: 12px; color: #666; text-align: center;'>

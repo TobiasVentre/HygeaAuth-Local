@@ -46,11 +46,11 @@ namespace Infrastructure.Service
                         ?? Environment.GetEnvironmentVariable("EmailSettings__SmtpUser")
                         ?? configuration["EmailSettings:SenderEmail"]
                         ?? Environment.GetEnvironmentVariable("EmailSettings__SenderEmail")
-                        ?? "cuidarmed.notificaciones@gmail.com";
+                        ?? "notificaciones@hygeagroup.com.ar";
 
             _senderEmail = configuration["EmailSettings:SenderEmail"]
                            ?? Environment.GetEnvironmentVariable("EmailSettings__SenderEmail")
-                           ?? "cuidarmed.notificaciones@gmail.com";
+                           ?? "notificaciones@hygeagroup.com.ar";
 
             _senderName = configuration["EmailSettings:SenderName"]
                           ?? Environment.GetEnvironmentVariable("EmailSettings__SenderName")

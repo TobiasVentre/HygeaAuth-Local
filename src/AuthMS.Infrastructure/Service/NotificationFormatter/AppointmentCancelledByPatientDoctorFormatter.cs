@@ -39,7 +39,7 @@ namespace Infrastructure.Service.NotificationFormatter
               <body style='font-family: Arial; color: #333;'>
                 <div style='max-width: 600px; margin: auto; padding: 20px;'>
 
-                  <h2 style='color: #c0392b;'>❌ CuidarMed+ — Turno Cancelado por el Paciente</h2>
+                  <h2 style='color: #c0392b;'>❌ Hygea — Turno Cancelado por el Paciente</h2>
 
                   <p>Hola <strong>{user.FirstName} {user.LastName}</strong>,</p>
 
